@@ -47,6 +47,12 @@ it:
       tag_search_placeholder: Cerca o crea etichetta
       tags_label: Etichette
       transfer: Bonifico
+      category_search_placeholder: Cerca categorie
+      create_category: Crea "%{name}"
+      create_category_error: Impossibile creare la categoria
+      create_merchant: Crea
+      create_merchant_error: Impossibile creare l'esercente
+      merchant_search_placeholder: Cerca o crea esercente
     create:
       created: Transazione creata
     update:
@@ -105,6 +111,10 @@ it:
       transfer_or_debt_payment: "Bonifico o pagamento debito?"
       open_matcher: "Apri corrispondenza"
       convert: "Converti"
+      create_bill: Crea una bolletta
+      applied_to_title: Bollette pagate con questa transazione
+      applied_to_detail: '%{amount} per la bolletta in scadenza il %{date}'
+      applied_to_unreviewed: Da verificare
     activity_labels:
       buy: Acquisto
       sell: Vendita
