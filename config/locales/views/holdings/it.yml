@@ -36,6 +36,8 @@ it:
       save: Salva
       overwrite_confirm_title: Sovrascrivere il costo base?
       overwrite_confirm_body: "Questo sostituirà il costo base attuale di %{current}."
+      or_per_share_label: "Oppure inserisci per azione:"
+      per_share: per azione
     holding:
       per_share: per azione
       shares: "%{qty} azioni"
