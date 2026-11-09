@@ -362,7 +362,7 @@ it:
         push_login_notice: "Approva ora l'accesso nell'app Trade Republic. Sure verifica automaticamente in background. Puoi anche controllare lo stato manualmente."
         check_login_status: "Controlla ora lo stato"
         authenticator_code_notice: "Inserisci il codice dell'app di autenticazione."
-        approval_pending: "Accesso avviato. Approvalo nell'app Trade Republic; Sure sta verificando automaticamente."
+        approval_pending: "Accesso avviato. Approva l'accesso nell'app Trade Republic; Sure sta verificando automaticamente."
         awaiting_confirmation: "In attesa di approvazione nell'app Trade Republic."
         awaiting_authenticator_code: "Codice di autenticazione richiesto."
         login_expired: "La richiesta di approvazione è scaduta."
