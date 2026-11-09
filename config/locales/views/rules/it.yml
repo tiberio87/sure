@@ -34,6 +34,10 @@ it:
       rules_heading: Regole
       no_rules_title: Nessuna regola ancora
       no_rules_description: Configura regole per eseguire azioni sulle tue transazioni e altri dati ad ogni sincronizzazione del conto.
+      sort_by: "Ordina per:"
+      sort_name: Nome
+      sort_updated_at: Data aggiornamento
+      toggle_sort_direction: Cambia direzione ordinamento
     confirm:
       title: Conferma modifiche
       title_with_name: "Conferma modifiche a \"%{name}\""
@@ -48,6 +52,7 @@ it:
       confirm_changes: Conferma modifiche
     actions:
       value_placeholder: Inserisci un valore
+      to_label: a
     update:
       success: Regola aggiornata
     destroy:
@@ -100,6 +105,18 @@ it:
         expense: Spesa
         transfer: Bonifico
         equal_to: Uguale a
+      operators:
+        contains: Contiene
+        does_not_contain: Non contiene
+        equal_to: Uguale a
+        is_equal_to: È uguale a
+        not_equal_to: Diverso da
+        is_empty: È vuoto
+        is_not_empty: Non è vuoto
+        greater_than: Maggiore di
+        greater_or_equal_to: Maggiore o uguale a
+        less_than: Minore di
+        less_than_or_equal_to: Minore o uguale a
   rule:
     conditions:
       condition_group:
@@ -109,3 +126,6 @@ it:
         any: almeno una
         of_the_following_conditions: delle seguenti condizioni
         add_condition: Aggiungi condizione
+
+      condition:
+        value_placeholder: Inserisci un valore
