@@ -35,6 +35,11 @@ it:
         merchant: Commerciante
         actions: Azioni
         source: Fonte
+      search_family_merchants: Cerca esercenti della famiglia...
+      search_provider_merchants: Cerca esercenti del provider...
+      no_family_merchants_found: Nessun esercente della famiglia corrispondente
+      no_provider_merchants_found: Nessun esercente del provider corrispondente
+      per_page: per pagina
     family_merchant:
       edit: Modifica
       delete: Elimina
@@ -52,6 +57,8 @@ it:
       sources_label: Commercianti da unire
       sources_hint: I commercianti selezionati verranno uniti nella destinazione. I commercianti della famiglia verranno eliminati, quelli del provider verranno scollegati.
       submit: Unisci selezionati
+      sources_search_placeholder: Cerca esercenti...
+      no_merchants_found: Nessun esercente corrispondente
     new:
       title: Nuovo commerciante
     perform_merge:
