@@ -113,6 +113,8 @@ it:
         empty:
           heading: Nessun conto di finanziamento collegato
           body: Modifica l'obiettivo per collegare i conti correnti in cui risparmi.
+        converted: "≈ %{amount}"
+        rate_unavailable: "Tasso di cambio non ancora disponibile; questo conto non viene conteggiato."
       notes: Note
       funding_last_30d: ultimi 30gg
       funding_last_90d: ultimi 90gg
@@ -268,6 +270,7 @@ it:
       including_used: Inclusi %{amount} già utilizzati
       footer_reserve_intact: Riserva intatta
       footer_reserve_short: '%{amount} da ricaricare'
+      partial_total: "Alcuni saldi sono esclusi (tasso di cambio non ancora disponibile)"
     form:
       create: Crea obiettivo
       save: Salva modifiche
@@ -296,6 +299,7 @@ it:
         target_balance: Saldo obiettivo
         target_balance_pending: Calcolato al salvataggio
         target_balance_hint: In base alla tua spesa mensile mediana per i mesi indicati sopra. Aggiornato ogni mese.
+        currency_conversion_hint: "I conti possono avere valute diverse. I totali sono convertiti in %{currency}; gli accantonamenti restano nella valuta di ciascun conto."
       subtypes:
         checking: Conto corrente
         savings: Risparmio
@@ -319,6 +323,7 @@ it:
         prorata: I tuoi obiettivi su questo conto ammontano a {total} a fronte di un saldo di {balance} — avanzeranno pro rata.
         whole_balance: Questo conto finanzierà quanto resta dopo gli altri accantonamenti.
         whole_balance_alone: Questo obiettivo userà l'intero saldo di questo conto.
+        converted: "Questo accantonamento ≈ {amount}."
     consume:
       title: Registra una spesa
       subtitle: '%{goal}'
@@ -340,7 +345,16 @@ it:
         transaction_already_claimed: Questa uscita è già stata attribuita.
         transaction_not_found: Questa uscita non è più disponibile per l'attribuzione.
         no_linked_account: A questo obiettivo non resta alcun conto di finanziamento.
+        missing_exchange_rate: "Il tasso di cambio per la valuta di questo conto non è ancora disponibile, quindi la spesa non può essere registrata."
+      goal_currency_hint: "Inserisci l'importo in %{currency}. Per un conto in un'altra valuta viene convertito al tasso odierno prima di essere sottratto all'accantonamento del conto."
     unattributed_outflows:
       heading: Denaro uscito da questi conti
       body: Se una parte è stata spesa per %{goal}, indicalo e smetterà di contare contro l'obiettivo.
       attribute: È questa
+
+    currency_warning:
+      title: "Alcuni saldi non sono conteggiati"
+      body:
+        one: "Il tasso di cambio %{from} → %{to} non è ancora disponibile, quindi i saldi in %{from} sono esclusi da questo totale."
+        other: "I tassi di cambio da %{from} a %{to} non sono ancora disponibili, quindi questi saldi sono esclusi dal totale."
+      settings_link: "Impostazioni del provider dei tassi di cambio"

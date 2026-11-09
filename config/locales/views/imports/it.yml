@@ -282,6 +282,7 @@ it:
     publish:
       started: "La tua importazione è iniziata in background."
       max_rows_exceeded: "La tua importazione supera il numero massimo di righe di %{max}."
+      guest_new_categories_or_tags: "Gli ospiti non possono creare categorie o etichette. Associale a quelle esistenti oppure lascia i campi vuoti."
     revert:
       started: "Ripristino importazione in background."
     apply_template:
@@ -424,6 +425,7 @@ it:
       document_upload_failed: Non siamo riusciti a caricare il documento nel vector store. Riprova.
       invalid_ndjson_file_type: Tipo o formato file non valido. Carica un file di esportazione .ndjson o .json valido.
       document_provider_not_configured: Nessun vector store configurato per i caricamenti di documenti.
+      missing_upload: "Non abbiamo ricevuto il file. Prova a caricarlo di nuovo."
     show:
       finalize_upload: Finalizza il caricamento del file.
       finalize_mappings: Finalizza le mappature prima di procedere.
@@ -435,6 +437,28 @@ it:
       empty_summary: Non abbiamo trovato record importabili in questo file. Potrebbe essere vuoto, o le righe potrebbero non corrispondere al formato di esportazione previsto (ogni riga dovrebbe essere un oggetto JSON con chiavi "type" e "data", usando i tipi supportati da questa importazione).
       publish_import: Pubblica importazione
       back_to_imports: Torna alle importazioni
+      missing_merchant_warning_title: "Alcuni esercenti mancano da questa esportazione"
+      missing_merchant_warning_description:
+        one: "Un riferimento a un esercente in questo file punta a un esercente non incluso. Può accadere se l'esportazione è precedente all'aggiunta degli esercenti assegnati dai provider alle esportazioni Sure. Puoi comunque pubblicare l'importazione: il record sarà importato senza esercente e potrai associarlo in seguito."
+        other: "%{count} riferimenti a esercenti in questo file puntano a esercenti non inclusi. Può accadere se l'esportazione è precedente all'aggiunta degli esercenti assegnati dai provider alle esportazioni Sure. Puoi comunque pubblicare l'importazione: i record interessati saranno importati senza esercente e potrai associarli in seguito."
+      skipped_recurring_description:
+        one: "Una transazione ricorrente non ha un nome e manca il relativo esercente, quindi verrà ignorata. Le transazioni ricorrenti rilevate automaticamente saranno ricreate dopo l'importazione."
+        other: "%{count} transazioni ricorrenti non hanno un nome e mancano i relativi esercenti, quindi verranno ignorate. Le transazioni ricorrenti rilevate automaticamente saranno ricreate dopo l'importazione."
+      reused_taxonomy_notice_title: "Alcune categorie, etichette o esercenti esistono già"
+      reused_taxonomy_notice_description:
+        one: "Una categoria, etichetta o esercente in questo file esiste già nel tuo account (ad esempio tra le categorie predefinite). Verrà riutilizzata e aggiornata con i dati del file, senza creare duplicati."
+        other: "%{count} categorie, etichette o esercenti in questo file esistono già nel tuo account (ad esempio tra le categorie predefinite). Verranno riutilizzati e aggiornati con i dati del file, senza creare duplicati."
+      provider_merchant_diff_title: "Alcuni esercenti esistono già con dati differenti"
+      provider_merchant_diff_description:
+        one: "Un esercente presente nel file esiste già con dati differenti. Verrà conservato l'esercente esistente e i dati del file non verranno applicati."
+        other: "%{count} esercenti presenti nel file esistono già con dati differenti. Verranno conservati gli esercenti esistenti e i dati del file non verranno applicati."
+      provider_merchant_diff_summary: "Visualizza differenze"
+      provider_merchant_diff_none: "nessuna"
+      provider_merchant_diff_fields:
+        website_url: "Sito web"
+        name: "Nome"
+        provider_merchant_id: "ID provider"
+      provider_merchant_diff_row: "%{field}: mantenuto %{kept}, nel file %{imported}"
     errors:
       custom_column_requires_inflow: "Le importazioni con colonne personalizzate richiedono la selezione di una colonna di flusso in entrata"
       interrupted: Il worker in background è stato interrotto prima del completamento. I dati importati sono stati annullati — puoi riprovare in sicurezza.

@@ -48,6 +48,7 @@ it:
     entries:
       default_name: Transazione Wise
       fee_name: Commissione Wise
+      refund_name: "Rimborso Wise"
     activities:
       jar_deposit: Trasferimento al salvadanaio
       jar_withdrawal: Trasferimento dal salvadanaio
@@ -95,6 +96,9 @@ it:
       account_sync_failed:
         one: Impossibile pianificare la sincronizzazione di %{count} conto Wise.
         other: Impossibile pianificare la sincronizzazione di %{count} conti Wise.
+      fetch_failed:
+        one: "%{count} richiesta a Wise non è riuscita. Verrà ritentata alla prossima sincronizzazione."
+        other: "%{count} richieste a Wise non sono riuscite. Verranno ritentate alla prossima sincronizzazione."
     provider_connection:
       default_name: Wise
       default_description: Connetti il tuo conto multivaluta Wise
@@ -158,6 +162,9 @@ it:
       not_found: Conto o saldo Wise non trovato.
       success: '%{account_name} collegato a Wise con successo'
       failed: Impossibile collegare il conto. Riprova.
+      account_already_linked: "Questo conto è già collegato a un provider."
+      unsupported_account_type: "I saldi Wise possono essere collegati soltanto a conti di liquidità."
+      currency_mismatch: "Questo saldo Wise è in %{balance_currency}, mentre il conto è in %{account_currency}. Scegli un saldo nella valuta del conto."
     complete_account_setup:
       not_found: Saldo Wise non trovato.
       success: Conto creato e collegato con successo.
