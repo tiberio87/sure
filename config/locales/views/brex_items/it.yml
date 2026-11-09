@@ -116,6 +116,10 @@ it:
       token_label: Token
       token_placeholder: Incolla il token qui
       update_connection: Aggiorna connessione
+      accounts_link: Conti
+      configured_html: "Configurato e pronto all'uso. Visita la scheda %{accounts_link} per gestire e configurare i conti."
+      not_configured: Non configurato
+      setup_title: "Istruzioni di configurazione:"
     provider_connection:
       default_description: Connetti al tuo account Brex
       default_name: Brex
