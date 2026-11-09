@@ -7,9 +7,12 @@ it:
       joined_household: Hai aderito alla famiglia.
       message: "%{inviter} ti ha invitato a unirti come %{role}."
       title: Unisciti a %{family}
+      sign_in_existing: Ho già un account
     create:
       failure: Impossibile inviare l'invito
       success: Invito inviato con successo
+      existing_user_added: L'utente è stato aggiunto alla tua famiglia.
+      existing_user_has_family_data: Quell'utente possiede già una famiglia con conti. Deve rimuovere o trasferire quei conti prima di unirsi alla tua.
     destroy:
       failure: Si è verificato un problema nella rimozione dell'invito.
       not_authorized: Non sei autorizzato a gestire gli inviti.

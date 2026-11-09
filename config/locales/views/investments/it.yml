@@ -182,6 +182,9 @@ it:
       other:
         short: Altro
         long: Altro investimento
+      cash_management:
+        short: CMA
+        long: Conto di gestione della liquidità
     value_tooltip:
       cash: Liquidità
       holdings: Posizioni
