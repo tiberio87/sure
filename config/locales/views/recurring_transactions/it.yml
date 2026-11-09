@@ -68,6 +68,7 @@ it:
       semiannual: Ogni 6 mesi
       annual: Annuale
       custom: Pianificazione personalizzata
+      interval: "Intervallo personalizzato"
     frequency:
       monthly: 'Mensile, giorno: %{day}'
       weekly: Settimanale, di %{weekday}
@@ -78,6 +79,9 @@ it:
       annual: Annuale, %{day} di %{month}
       custom: Pianificazione personalizzata
       last_day: ultimo giorno
+      every_n_weeks: "Ogni %{interval} settimane, il %{weekday}"
+      every_n_months: "Ogni %{interval} mesi, il giorno %{day}"
+      every_n_years: "Ogni %{interval} anni, il %{day} %{month}"
     actions:
       edit_payment_link: Modifica link di pagamento
       pause: Metti in pausa
@@ -103,6 +107,20 @@ it:
       pick_different: Parti da un'altra transazione
       smart_fill: Compila con l'IA
       smart_fill_applied: L'IA ha suggerito questi valori in base alla cronologia degli addebiti. Controllali prima di salvare.
+      covered_title: "Questa transazione è già associata a una scadenza"
+      covered_body: "%{name} tiene già traccia di questo pagamento; creando un'altra scadenza verrebbe conteggiato due volte."
+      covered_open: "Apri scadenza"
+      covered_suggested_title: "Sure ha già suggerito una scadenza per questo pagamento"
+      covered_suggested_body: "%{name} è in attesa tra i suggerimenti. Confermalo per iniziare a monitorare la scadenza senza contare due volte il pagamento. I pagamenti corrispondenti vengono associati automaticamente; puoi associare anche questo dalla scadenza."
+      covered_confirm: "Conferma scadenza"
+      covered_create_anyway: "Crea comunque una scadenza separata"
+      covered_income_title: "Questo accredito è già associato a un'entrata"
+      covered_income_body: "%{name} tiene già traccia di questo accredito; aggiungerlo di nuovo lo conteggerebbe due volte."
+      covered_income_open: "Apri entrata"
+      covered_income_suggested_title: "Sure ha già suggerito questa entrata"
+      covered_income_suggested_body: "%{name} è in attesa tra i suggerimenti. Aggiungila per iniziare a monitorarla senza contare due volte l'accredito. Gli accrediti corrispondenti vengono associati automaticamente; puoi associare anche questo dalla sezione dell'entrata."
+      covered_income_confirm: "Aggiungi entrata"
+      covered_income_create_anyway: "Aggiungi comunque un'entrata separata"
     smart_fills:
       create:
         failed: Impossibile analizzare la cronologia degli addebiti in questo momento. Il modulo mantiene i valori della transazione.
@@ -123,6 +141,8 @@ it:
       amount_invalid: Inserisci l'importo come numero semplice
       account_invalid: Scegli un conto a cui puoi aggiungere bollette oppure lascia vuoto
       already_exists: Questa bolletta esiste già
+      amount_too_precise: "Usa al massimo 4 cifre decimali"
+      category_invalid: "Scegli una delle tue categorie oppure lascia il campo vuoto"
     edit:
       trigger_label: Modifica bolletta
       title: Modifica %{name}
@@ -176,6 +196,8 @@ it:
       frequency_second_day_label: E giorno
       frequency_weekday_label: Giorno della settimana
       frequency_month_label: Mese
+      frequency_interval_label: "Ripeti ogni"
+      frequency_interval_unit_label: "Unità"
     update:
       success: Bolletta aggiornata
       success_with_siblings:
@@ -198,3 +220,14 @@ it:
       dismiss: Non è una bolletta
     confirmed: Bolletta aggiunta alle tue transazioni ricorrenti
     dismissed: Ignorata. Questo schema non verrà più suggerito.
+
+    frequency_interval_units:
+      weekly: "settimane"
+      monthly: "mesi"
+      yearly: "anni"
+    already_covered: "Questa transazione corrisponde già a una transazione ricorrente"
+    suggested_income:
+      title: "Possibile nuova entrata"
+      confirm: "Aggiungi entrata"
+      dismiss: "Non è un'entrata"
+    confirmed_income: "Entrata aggiunta alle transazioni ricorrenti"
