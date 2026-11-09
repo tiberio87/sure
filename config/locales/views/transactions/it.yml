@@ -53,6 +53,10 @@ it:
       create_merchant: Crea
       create_merchant_error: Impossibile creare l'esercente
       merchant_search_placeholder: Cerca o crea esercente
+      create_as_subcategory: "Aggiungi come sottocategoria…"
+      choose_parent: "Crea «%{name}» sotto:"
+      back_to_categories: "Indietro"
+      no_matching_categories: "Nessuna categoria corrispondente"
     create:
       created: Transazione creata
     update:
@@ -115,6 +119,27 @@ it:
       applied_to_title: Bollette pagate con questa transazione
       applied_to_detail: '%{amount} per la bolletta in scadenza il %{date}'
       applied_to_unreviewed: Da verificare
+      category_set_on_hidden_outflow: "Questo è il movimento in entrata di un trasferimento. La categoria è associata al movimento in uscita su un conto a cui non hai accesso e può essere modificata soltanto da quel conto."
+      category_set_on_outflow: "Questo è il movimento in entrata di un trasferimento. La categoria appartiene al movimento in uscita e può essere modificata soltanto lì, così i budget lo conteggiano una sola volta."
+      original_description: "Descrizione originale"
+      payment_channel: "Canale di pagamento"
+      transaction_code: "Codice transazione"
+      plaid_payment_meta_label: "Metadati del pagamento · %{name}"
+      plaid_counterparty_label: "Controparte %{index}"
+      provider_extra_fields:
+        by_order_of: "Su ordine di"
+        confidence_level: "Livello di attendibilità"
+        entity_id: "ID entità"
+        logo_url: "URL del logo"
+        name: "Nome"
+        payee: "Beneficiario"
+        payer: "Ordinante"
+        phone_number: "Numero di telefono"
+        ppd_id: "ID PPD"
+        reason: "Causale"
+        reference_number: "Numero di riferimento"
+        type: "Tipo"
+        website: "Sito web"
     activity_labels:
       buy: Acquisto
       sell: Vendita
@@ -144,6 +169,8 @@ it:
       payment_confirmed: Pagamento confermato
       reject_match: Rifiuta abbinamento
       transfer_confirmed: Bonifico confermato
+      auto_matched_tooltip_html: "%{amount} sul conto %{account} il %{date}. Clicca per verificare."
+      auto_matched_tooltip_hidden: "Una transazione su un conto che non puoi visualizzare."
     transaction:
       pending: In attesa
       pending_tooltip: Transazione in attesa — potrebbe cambiare alla registrazione
@@ -156,6 +183,12 @@ it:
       split: Suddivisa
       split_tooltip: Questa transazione è stata suddivisa in più voci
       split_child_tooltip: Parte di una transazione suddivisa
+      scheduled: "Programmato"
+      scheduled_tooltip: "Con data futura: non inciderà sul saldo fino ad allora"
+      transfer_hint: "Trasferimento?"
+      transfer_hint_dismiss: "Non è un trasferimento"
+      transfer_hint_tooltip: "Una transazione corrispondente su un altro conto sembra rappresentare l'altro lato di un trasferimento. Clicca per associarle."
+      view_merchant: "Visualizza esercente"
     merge_duplicate:
       success: Transazioni unite con successo
       failure: Impossibile unire le transazioni
@@ -175,6 +208,9 @@ it:
       expenses: Spese
       inflow: Entrate
       outflow: Uscite
+      scheduled_count:
+        one: "inclusa %{count} transazione programmata"
+        other: "incluse %{count} programmate"
     header:
       edit_categories: Modifica categorie
       edit_imports: Modifica importazioni
@@ -245,6 +281,8 @@ it:
         category: Categoria
         tag: Etichetta
         merchant: Esercente
+        ai: "IA"
+        attachment: "Allegato"
     convert_to_trade:
       title: Converti in operazione su titolo
       description: Converti questa transazione in un'operazione con dettagli del titolo
@@ -313,6 +351,10 @@ it:
           transfer: Bonifico
           confirmed: Confermata
           pending: In attesa
+          ai_current: "IA"
+          ai_history: "Cronologia IA"
+          attachment_with: "Con allegato"
+          attachment_without: "Senza allegato"
         type_filter:
           expense: Spesa
           income: Entrata
@@ -320,6 +362,14 @@ it:
         status_filter:
           confirmed: Confermata
           pending: In attesa
+        attachment_filter:
+          with: "Con allegato"
+          without: "Senza allegato"
+        ai_filter:
+          current: "IA"
+          current_description: "La categoria è ancora quella assegnata automaticamente (dall'IA o da Bayes)."
+          history: "Cronologia IA"
+          history_description: "La transazione è stata categorizzata automaticamente, ma la categoria è stata modificata in seguito."
       menu:
         account_filter: Conto
         amount_filter: Importo
@@ -358,3 +408,6 @@ it:
         other: "File (%{count})"
       browse_to_add: "Sfoglia per aggiungere file"
       max_reached: "Limite massimo di file raggiunto (%{count}/%{max}). Elimina un file esistente per caricarne un altro."
+
+    transaction_category:
+      set_on_outflow: "La categoria appartiene al movimento in uscita di questo trasferimento e può essere modificata soltanto da lì"
