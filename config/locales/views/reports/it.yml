@@ -32,6 +32,7 @@ it:
       next_year: "Anno successivo"
       previous_decade: "Decennio precedente"
       next_decade: "Decennio successivo"
+      drag_to_reorder: "Trascina per riordinare la sezione"
     invalid_date_range: "La data di fine non può essere precedente alla data di inizio. Le date sono state scambiate."
     summary:
       total_income: Entrate totali
@@ -186,6 +187,11 @@ it:
       then_use: Poi usa l'URL completo con =IMPORTDATA() in Google Sheets.
       go_to_api_keys: Vai alle chiavi API
       close: Capito
+      title_with_key: "✅ Copia URL per Google Sheets"
+      ready: Il tuo URL CSV (con chiave API) è pronto.
+      steps: "Per importare in Google Sheets:\n1. Crea un nuovo Google Sheet\n2. Nella cella A1, inserisci la formula mostrata sotto\n3. Premi Invio"
+      security_warning: "Questo URL include la tua chiave API. Tienila al sicuro!"
+      open_sheets: Apri Google Sheets
     print:
       document_title: Rapporto finanziario
       title: Rapporto finanziario
