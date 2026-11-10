@@ -18,6 +18,7 @@ it:
             base:
               at_least_one_linked_account_required: Scegli almeno un conto per finanziare questo obiettivo.
               whole_account_conflict_on_restore: 'Impossibile ripristinare questo obiettivo: “%{account_name}” è ora interamente accantonato per “%{goal_name}”. Inserisci prima un importo su uno dei due.'
+              missing_exchange_rate: "Non è ancora disponibile un tasso di cambio per uno dei conti associati a questo obiettivo, quindi non è possibile completarlo."
             linked_accounts:
               must_be_fundable: Tutti i conti collegati devono essere conti correnti, conti di investimento o conti cripto.
               must_belong_to_family: I conti collegati devono appartenere alla stessa famiglia dell'obiettivo.
