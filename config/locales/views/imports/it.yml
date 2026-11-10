@@ -492,7 +492,7 @@ it:
       processing_failed_with_message: "%{message}"
       processing_failed_generic: "Elaborazione fallita: %{error}"
       ready_for_review_title: Pronto per la revisione
-      ready_for_review_description: "Abbiamo estratto %{count} transazioni dal tuo estratto conto. Revisiona e pubblica per aggiungerle al tuo conto."
+      ready_for_review_description:
         one: "%{count} transazione del tuo estratto conto non è ancora in questo conto. Rivedila e pubblicala per aggiungerla."
         other: "%{count} transazioni del tuo estratto conto non sono ancora in questo conto. Rivedile e pubblicale per aggiungerle."
       transactions_extracted: Transazioni estratte
