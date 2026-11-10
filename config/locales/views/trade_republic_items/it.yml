@@ -82,6 +82,7 @@ it:
         account_type_cash: Conto di liquidità
         account_summary: '%{account_type} • Saldo: %{balance}'
         account_id: 'ID conto: %{account_id}'
+        account_type_crypto: "Conto di criptovalute"
       link_existing:
         description: Oppure collega il conto Trade Republic rilevato a un conto d'investimento manuale esistente.
         manual_account_option: '%{name} (%{balance})'
