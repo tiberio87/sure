@@ -47,6 +47,9 @@ it:
         sso_confirm_body: Sei sicuro di voler disconnettere il tuo account %{provider}? Puoi ricollegarlo in seguito accedendo di nuovo con quel provider.
         sso_confirm_button: Disconnetti
         sso_warning_message: Questo è il tuo unico metodo di accesso. Dovresti impostare una password nelle impostazioni di sicurezza prima di disconnetterti, altrimenti potresti essere escluso dal tuo account.
+        disable_mfa_password_label: "Conferma con la tua password"
+        disable_mfa_password_placeholder: "Inserisci la tua password"
+        mfa_sso_only: "L'autenticazione a due fattori è gestita dal tuo provider di identità."
   webauthn_credentials:
     code_already_used: Questo codice è già stato usato. Attendi il prossimo codice dalla tua app di autenticazione.
     invalid_code: Questo codice non è valido. Inserisci un codice attuale dalla tua app di autenticazione o un codice di backup non usato.

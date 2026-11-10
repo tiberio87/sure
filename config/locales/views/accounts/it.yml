@@ -51,12 +51,23 @@ it:
       notes_label: Note
       notes_placeholder: Conserva informazioni aggiuntive come numeri di conto, IBAN, codici ABI/CAB, ecc.
       exclude_from_reports: Escludi da tutti i report
+      enable_category_matcher_label: Abilita assegnazione automatica delle categorie
+      enable_category_matcher_hint: Se abilitata, la categoria suggerita dal provider viene applicata alle transazioni importate. Disabilitala per lasciare le nuove transazioni senza categoria.
+      institution_domain_hint: "Utilizzato per cercare l'icona dell'istituto."
+      institution_domain_missing_logo_key_hint: "Utilizzato per cercare l'icona dell'istituto. I loghi Brandfetch non sono disponibili perché non è configurato un ID client Brandfetch."
+      institution_domain_settings_link: "Aggiungilo nelle impostazioni di Self-hosting"
+      logo_label: "Icona"
+      logo_hint: "Oppure carica una tua immagine PNG, JPEG, GIF, WebP o ICO fino a 1 MB. Sostituirà il logo Brandfetch."
     index:
       accounts: Conti
       manual_accounts:
         other_accounts: Altri conti
       new_account: Nuovo conto
       sync: Sincronizza tutti
+      cancel_sync: Annulla sincronizzazione
+      financekit_accounts:
+        title: "Apple Wallet"
+        description: "Gestisci le connessioni Apple Wallet e la sincronizzazione nell'app Sure per iOS."
     sync_all:
       syncing: "Sincronizzazione conti in corso..."
     new:
@@ -65,6 +76,8 @@ it:
         select: Seleziona
         navigate: Naviga
         close: Chiudi
+        next: Avanti
+        previous: Indietro
       method_selector:
         connected_entry: Collega conto
         connected_entry_eu: Collega conto EU
@@ -80,6 +93,8 @@ it:
         holdings: Portafoglio
         overview: Panoramica
         statements: Estratti conto
+        schedule: Piano di rimborso
+        extra_repayments: "Rimborsi aggiuntivi"
       activity:
         amount: Importo
         balance: Saldo
@@ -122,6 +137,7 @@ it:
         statements: Estratti conto
     update:
       success: "Conto %{type} aggiornato"
+      logo_not_applied: "Il conto è stato salvato, ma non è stato possibile scaricare l'icona scelta. Riprova oppure caricane una tua."
     sidebar:
       missing_data: Dati storici mancanti
       missing_data_description: "%{product} utilizza provider di terze parti per recuperare tassi di cambio storici, prezzi dei titoli e altro. Questi dati sono necessari per calcolare i saldi storici accurati del conto."
@@ -134,6 +150,14 @@ it:
       new_debt: Nuova passività
       new_account: Nuovo conto
       new_account_group: "Nuovo %{account_group}"
+      expand_all: Espandi tutto
+      collapse_all: Comprimi tutto
+      reorder_account: "Sposta %{account}"
+      reorder_hint: "Trascina per cambiare ordine. Con la tastiera, premi Invio e poi i tasti freccia."
+      sort_mode:
+        start: "Riordina conti"
+        hint: "Trascina i conti dalla maniglia per riordinarli."
+        done: "Fine"
     types:
       depository: Liquidità
       investment: Investimento
@@ -181,6 +205,7 @@ it:
       warning_transactions_kept: Tutte le transazioni e i saldi esistenti verranno conservati
       warning_can_delete: Dopo lo scollegamento, potrai eliminare il conto se necessario
       confirm_button: Conferma e scollega
+      warning_wallet_connection: "Tutti i conti di questa connessione Apple Wallet verranno scollegati. Transazioni e saldi saranno conservati. Potrai ricollegarli dall'app Sure per iOS configurando nuovamente Wallet."
     unlink:
       success: "Conto scollegato con successo. È ora un conto manuale."
       not_linked: "Il conto non è collegato a nessun provider"
@@ -192,6 +217,41 @@ it:
       already_linked: "Il conto è già collegato a un provider"
       no_providers: "Nessun provider attualmente configurato"
 
+    scheduled_balance_tooltip:
+      description: "Saldo previsto dopo la contabilizzazione di tutte le transazioni programmate"
+      current: "Saldo attuale"
+      scheduled: "Programmate"
+      projected: "Saldo previsto"
+    logo_caption:
+      appstore: "Da App Store"
+      brandfetch: "Da Brandfetch"
+      duckduckgo: "Da DuckDuckGo"
+      google: "Da Google"
+      googleplay: "Da Google Play"
+      none: "Nessuna icona"
+      rustore: "Da RuStore"
+      uploaded: "Caricata da te"
+      yandex: "Da Yandex"
+    logo_field:
+      current: "attuale"
+      domain_needed: "Inserisci il dominio dell'istituto, ad esempio tbank.ru, per scegliere un'icona."
+      empty: "Nessuna icona trovata per questo dominio. Puoi caricare la tua qui sotto."
+      pick: "Scegli icona"
+      pending: "Verrà applicata al salvataggio"
+      remove: "Rimuovi"
+      removal: "Verrà rimossa al salvataggio e tornerà l'icona automatica"
+      searching: "Ricerca in corso…"
+    logo_options:
+      size: "%{size} px"
+      sources:
+        appstore: "App Store"
+        brandfetch: "Brandfetch"
+        duckduckgo: "DuckDuckGo"
+        google: "Google"
+        googleplay: "Google Play"
+        rustore: "RuStore"
+        yandex: "Yandex"
+      stored: "Icona salvata"
   email_confirmations:
     new:
       invalid_token: Link di conferma non valido o scaduto.
