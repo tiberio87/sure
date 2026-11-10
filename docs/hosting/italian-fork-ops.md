@@ -58,9 +58,12 @@ gh workflow run fork-maintenance.yml --repo tiberio87/sure --ref main
 
 The original Sure repository contains its own `publish.yml` that may
 run on pushes to fork `main` and on its schedule when Actions are enabled.
-**Disable that inherited `Publish Docker image` workflow in this fork**
-unless you specifically want upstream-style releases. Our independent
-Italian publisher below uses a different package to prevent tag collisions.
+The inherited `Publish Docker image` workflow has a repository guard:
+its `prepare` job runs **only** for `we-promise/sure`. All release jobs depend
+on it, so even scheduled and `main` push events in the fork are skipped.
+Do not remove this fork guard when merging upstream changes; it prevents
+unlocalized builds and unrelated upstream releases. Our independent
+Italian publisher below uses a separate GHCR package.
 
 ## Italian image publishing
 
