@@ -33,6 +33,8 @@ it:
       previous_decade: "Decennio precedente"
       next_decade: "Decennio successivo"
       drag_to_reorder: "Trascina per riordinare la sezione"
+      sections_aria: "Sezioni dei report"
+      shortcut_hint: "%{action} (%{key})"
     invalid_date_range: "La data di fine non può essere precedente alla data di inizio. Le date sono state scambiate."
     summary:
       total_income: Entrate totali
@@ -242,3 +244,32 @@ it:
         amount: Importo
         percent: "%"
         more_categories: "+ %{count} altre categorie"
+
+    spending_vs_normal:
+      title: "Spese rispetto alla media abituale"
+      summary_html: "%{total} spesi in questo periodo. La spesa abituale per un periodo di pari durata è %{normal}, calcolata dal %{baseline_start} al %{baseline_end}."
+      summary_so_far_html: "Finora hai speso %{total}. La spesa abituale per lo stesso numero di giorni è %{normal}, calcolata dal %{baseline_start} al %{baseline_end}."
+      no_history_html: "%{total} spesi in questo periodo. Non ci sono ancora dati storici sufficienti per stimare la spesa abituale."
+      no_history_short: "Non ci sono ancora dati storici sufficienti per effettuare un confronto."
+      no_spending: "Nessuna spesa in questo periodo."
+      no_changes: "La spesa di ogni categoria corrisponde alla media abituale."
+      treemap_title: "Dove sono finiti i soldi"
+      changes_title: "Cosa è cambiato"
+      direct: "%{category} (senza sottocategoria)"
+      tooltip:
+        path: "%{parent} › %{category}"
+        total: "%{category}: %{amount}"
+        normal: "Spesa abituale: %{amount}"
+        more: "%{amount} in più rispetto alla media abituale (%{percent})"
+        less: "%{amount} in meno rispetto alla media abituale (%{percent})"
+        more_no_percent: "%{amount} in più rispetto alla media abituale"
+        less_no_percent: "%{amount} in meno rispetto alla media abituale"
+        no_normal: "Nessun dato storico precedente con cui confrontare"
+        open: "Seleziona per visualizzare queste transazioni"
+      legend:
+        less: "50–100% in meno"
+        slightly_less: "15–50% in meno"
+        normal: "Vicino alla media abituale"
+        slightly_more: "15–50% in più"
+        more: "50–100% in più"
+        much_more: "Oltre il 100% in più"
