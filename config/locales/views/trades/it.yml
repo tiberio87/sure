@@ -71,3 +71,7 @@ it:
       invalid_activity_label: Etichetta dell'attività d'investimento non valida
       invalid_type: Tipo non valido
       supported_types: 'type deve essere uno tra: %{types}'
+
+    trade:
+      scheduled: "Programmato"
+      scheduled_tooltip: "Con data futura: non influirà sul saldo fino a quel momento"
