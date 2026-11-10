@@ -51,6 +51,8 @@ it:
         tabs:
           background_jobs: Job in background
           ai: Stato AI
+          hosted_usage: "Utilizzo"
+          configuration: "Configurazione"
         alert:
           title: I job in background non sono in esecuzione
         status_section_title: Stato di Sidekiq
@@ -256,6 +258,7 @@ it:
             title: Configurazione locale consigliata
             description: Esegui l'LLM tramite il tuo endpoint locale compatibile con OpenAI, salva i vettori dei documenti in pgvector e punta le impostazioni di embedding a un endpoint di embedding compatibile con OpenAI. L'immagine PostgreSQL deve includere l'estensione vector e le dimensioni degli embedding devono corrispondere al modello selezionato.
 
+          loading: "Esecuzione dei controlli in tempo reale…"
       hosted_usage:
         loading: "Caricamento delle statistiche di utilizzo della versione ospitata…"
         title: "Utilizzo della versione ospitata"
@@ -358,3 +361,73 @@ it:
             title: "Logtail"
             description: "Inoltro facoltativo dei log di produzione. Se non configurato, l'applicazione continua a scrivere i log sull'output standard."
             guidance: "Imposta insieme LOGTAIL_API_KEY e LOGTAIL_INGESTING_HOST e riavvia i servizi interessati. Questo controllo non invia log di prova."
+      configuration:
+        description: "Configurazione visibile a questo processo web. Questi controlli non inviano email, non contattano provider e non caricano né scaricano file. «Configurato» indica che le impostazioni sono presenti, non che siano stati verificati l'invio, l'accesso al provider o l'archiviazione."
+        statuses:
+          configured: "Configurato"
+          not_configured: "Non configurato"
+          incomplete: "Configurazione incompleta"
+          disabled: "Disabilitato"
+          not_checked: "Non verificato"
+        settings_needed: "Impostazioni da controllare"
+        unknown_provider: "Provider selezionato non riconosciuto"
+        provider_statuses:
+          configured: "Configurato"
+          not_configured: "Chiave API mancante"
+          invalid: "Selezione non valida"
+        configure_providers: "Apri le impostazioni self-hosted"
+        storage_backend: "Archiviazione selezionata: %{backend}"
+        storage_backends:
+          local: "Disco locale"
+          test: "Disco di test"
+          amazon: "Amazon S3"
+          cloudflare: "Cloudflare R2"
+          generic_s3: "Archiviazione compatibile con S3"
+          google: "Google Cloud Storage"
+          other: "Backend personalizzato o non riconosciuto"
+        checks:
+          smtp:
+            title: "Email (SMTP)"
+            statuses:
+              configured: "Le impostazioni SMTP sono presenti."
+              not_configured: "SMTP non è configurato. Non è possibile inviare tramite SMTP email di reimpostazione password, inviti e altri messaggi di sistema."
+              incomplete: "Alcune impostazioni email sono mancanti o incomplete. Le email di sistema o i link contenuti al loro interno potrebbero non funzionare."
+              disabled: "L'invio delle email è disabilitato nella configurazione del servizio di posta in esecuzione."
+              not_checked: "Questo processo utilizza un metodo di invio diverso da SMTP, per esempio l'anteprima di sviluppo. L'invio tramite SMTP non è stato verificato."
+            guidance: "SMTP non può essere configurato dall'interfaccia amministrativa. Imposta le variabili d'ambiente email per i servizi web e worker, quindi riavviali entrambi. SMTP_USERNAME e SMTP_PASSWORD possono essere omessi entrambi se utilizzi un relay senza autenticazione."
+            issues:
+              address: "SMTP_ADDRESS"
+              port: "SMTP_PORT (numero da 1 a 65535)"
+              sender: "EMAIL_SENDER (sostituisci il mittente predefinito sender@sure.local)"
+              app_domain: "APP_DOMAIN (utilizzato nei link delle email)"
+              authentication: "SMTP_USERNAME e SMTP_PASSWORD (impostali entrambi oppure nessuno)"
+          securities:
+            title: "Prezzi di mercato"
+            statuses:
+              configured: "Tutti i provider di prezzi di mercato abilitati sono configurati."
+              not_configured: "Ai provider di prezzi di mercato abilitati mancano le chiavi API. La ricerca automatica dei titoli e il recupero delle quotazioni non sono disponibili tramite questi provider."
+              incomplete: "Almeno un provider di prezzi di mercato abilitato ha una configurazione incompleta o una selezione non valida. I titoli assegnati a quel provider potrebbero non ricevere aggiornamenti dei prezzi."
+              disabled: "Nessun provider di prezzi di mercato è abilitato. La ricerca automatica dei titoli e il recupero delle quotazioni non sono disponibili."
+            guidance: "Scegli i provider e aggiungi le eventuali chiavi API richieste nelle impostazioni self-hosted oppure configuralle nell'ambiente di distribuzione. Le variabili d'ambiente hanno la precedenza. I provider pubblici non richiedono chiavi API."
+          exchange_rates:
+            title: "Tassi di cambio"
+            statuses:
+              configured: "Il provider dei tassi di cambio selezionato è configurato."
+              not_configured: "Non è configurato alcun provider di tassi di cambio utilizzabile. La conversione automatica delle valute potrebbe non essere disponibile quando manca un tasso salvato."
+            guidance: "Seleziona un provider di tassi di cambio e aggiungi la relativa chiave API, se richiesta, nelle impostazioni self-hosted oppure nell'ambiente di distribuzione. EXCHANGE_RATE_PROVIDER e le variabili d'ambiente delle chiavi API dei provider hanno la precedenza."
+            issues:
+              invalid_provider: "Il provider di tassi di cambio selezionato non è riconosciuto. La ricerca automatica dei tassi non funzionerà finché non selezioni un provider supportato."
+          storage:
+            title: "Caricamento e archiviazione dei file"
+            statuses:
+              configured: "Le impostazioni di archiviazione sono presenti; il disco locale non richiede credenziali cloud."
+              not_configured: "Il backend di archiviazione selezionato non ha una configurazione corrispondente. Il caricamento dei file potrebbe non essere disponibile."
+              incomplete: "Le impostazioni di archiviazione obbligatorie sono mancanti o incomplete. Il caricamento o il recupero dei file potrebbe non funzionare."
+              not_checked: "Questo backend utilizza il rilevamento esterno delle credenziali o una configurazione personalizzata. Non è possibile determinarne l'accessibilità soltanto da queste impostazioni."
+            guidance: "Controlla ACTIVE_STORAGE_SERVICE e le impostazioni di distribuzione del backend selezionato. Il disco locale richiede un'archiviazione persistente condivisa tra i servizi web e worker. Cambiare backend non migra i file esistenti: pianifica separatamente l'eventuale migrazione."
+            issues:
+              root: "Directory principale dell'archiviazione locale"
+              bucket: "Bucket di archiviazione"
+              region: "Regione di archiviazione"
+              credentials: "Chiave di accesso e chiave segreta dell'archiviazione (impostale entrambe oppure usa il rilevamento esterno delle credenziali)"
+              endpoint: "Endpoint di archiviazione (e CLOUDFLARE_ACCOUNT_ID per R2)"
