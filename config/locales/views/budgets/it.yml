@@ -73,6 +73,7 @@ it:
       earmarked: Già accantonato per gli obiettivi
       free: Davvero libero
       goals_link: Vedi obiettivi
+      currency_warning: "I saldi in %{currencies} non sono inclusi perché non è ancora disponibile un tasso di cambio verso %{currency}."
   budget_categories:
     allocation_progress:
       budget_exceeded_html: 'Budget superato di <span class="text-red-500 privacy-sensitive">%{amount}</span>'
