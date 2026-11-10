@@ -49,5 +49,7 @@ it:
       destination_fee: Commissione destinazione
       category: Categoria
       uncategorized: Non categorizzata
+      investment_contribution_subtitle: "Conteggia questo trasferimento come spesa nei budget e nei report. Disattiva questa opzione quando il conto di investimento o di criptovalute si limita a convertire il denaro in un'altra valuta."
+      investment_contribution_title: "Contributo all'investimento"
     update:
       success: Bonifico aggiornato
