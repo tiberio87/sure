@@ -19,7 +19,6 @@ it:
       new: Nuovo
       dismissed: Insight ignorato
       undo: Annulla
-    card:
       dig_in: "Approfondisci con l’IA"
     dig_in:
       prompt: |-
