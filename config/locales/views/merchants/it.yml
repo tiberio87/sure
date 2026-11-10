@@ -13,6 +13,9 @@ it:
       name_placeholder: Nome commerciante
       website_placeholder: Sito web (es. starbucks.com)
       website_hint: Inserisci il sito web del commerciante per visualizzarne automaticamente il logo
+      logo_label: "Logo"
+      logo_hint: "Sostituisce il logo del sito web. JPEG, PNG o WebP, fino a %{max_megabytes} MB."
+      remove_logo_label: "Rimuovi il logo caricato"
     index:
       empty: Nessun commerciante ancora
       new: Nuovo commerciante
@@ -79,3 +82,13 @@ it:
     update:
       success: Commerciante aggiornato con successo
       converted_success: Commerciante convertito e aggiornato con successo
+
+  merchants:
+    show:
+      average_transaction: "Transazione media"
+      edit: "Modifica esercente"
+      first_transaction: "Prima transazione"
+      last_transaction: "Ultima transazione"
+      summary: "Riepilogo"
+      total_spending: "Spesa totale"
+      total_transactions: "Totale transazioni"
