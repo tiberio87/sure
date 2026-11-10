@@ -57,8 +57,8 @@ jobs:
             end
 
             begin
-              english = YAML.safe_load_file(english_path, permitted_classes: [Date, Time], aliases: true).fetch("en")
-              italian = YAML.safe_load_file(italian_path, permitted_classes: [Date, Time], aliases: true).fetch("it")
+              english = YAML.safe_load_file(english_path, permitted_classes: [Date, Time, Symbol], aliases: true).fetch("en")
+              italian = YAML.safe_load_file(italian_path, permitted_classes: [Date, Time, Symbol], aliases: true).fetch("it")
               en_keys = leaves(english)
               it_keys = leaves(italian)
               (en_keys.keys - it_keys.keys).each { |key| failures << "Missing: #{italian_path}:#{key}" }
@@ -67,6 +67,13 @@ jobs:
                 next unless en_keys[key].is_a?(String) && it_keys[key].is_a?(String)
                 expected = en_keys[key].scan(/%\{([a-zA-Z0-9_]+)\}/).flatten.sort
                 found = it_keys[key].scan(/%\{([a-zA-Z0-9_]+)\}/).flatten.sort
+                # For a singular plural form (:one), the count is known to be
+                # one. Rails accepts both "1 account" and "%{count} account":
+                # retain validation of every *other* interpolation parameter.
+                if key.end_with?(".one")
+                  expected = expected.reject { |name| name == "count" }
+                  found = found.reject { |name| name == "count" }
+                end
                 failures << "Interpolation mismatch: #{italian_path}:#{key}" if expected != found
               end
             rescue StandardError => error
