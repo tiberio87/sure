@@ -28,7 +28,7 @@ it:
       accounts_link: Conti
       configured_html: Connesso e in sincronizzazione. Vai alla scheda %{accounts_link} per gestire i tuoi conti.
       not_configured: Non configurato
-      sandbox_note_html: Per i test usa l'URL di base della <strong>sandbox</strong> (<code>https://api.sandbox.transferwise.tech</code>). Imposta <code>WISE_BASE_URL</code> nel tuo ambiente.
+      sandbox_note_html: Per i test usa l'URL di base della <strong>sandbox</strong> (<code>https://api.wise-sandbox.com</code>). Imposta <code>WISE_BASE_URL</code> nel tuo ambiente.
       encryption_warning:
         title: La crittografia del database non è configurata
         message: Configura le chiavi di crittografia di Active Record prima di aggiungere token Wise in produzione. Senza crittografia, i token vengono salvati in chiaro.
