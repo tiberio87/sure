@@ -28,7 +28,7 @@ it:
     marked_inactive: Transazione ricorrente contrassegnata come inattiva
     marked_active: Transazione ricorrente contrassegnata come attiva
     deleted: Transazione ricorrente eliminata
-    confirm_delete: Sei sicuro di voler eliminare questa transazione ricorrente?
+    confirm_delete: 'Rimuovere %{name} dalle bollette? Le transazioni resteranno invariate: verranno rimossi soltanto la bolletta e il relativo calendario dei pagamenti.'
     marked_as_recurring: Transazione contrassegnata come ricorrente
     already_exists: Esiste già una transazione ricorrente manuale per questo schema
     creation_failed: Impossibile creare la transazione ricorrente. Verifica i dettagli della transazione e riprova.
