@@ -1,0 +1,75 @@
+name: Fork - Italian Docker image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [i18n/italian-complete]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: italian-image-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    if: github.repository == 'tiberio87/sure' && github.ref == 'refs/heads/i18n/italian-complete'
+    uses: ./.github/workflows/ci.yml
+
+  italian-locales:
+    if: github.repository == 'tiberio87/sure' && github.ref == 'refs/heads/i18n/italian-complete'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - name: Validate Italian locales against English
+        run: ruby scripts/check-italian-locales.rb
+
+  image:
+    name: Build Italian image (amd64)
+    needs: [ci, italian-locales]
+    if: github.repository == 'tiberio87/sure' && github.ref == 'refs/heads/i18n/italian-complete'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - name: Generate reproducible version stamp
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'it-%s\n' "${GITHUB_SHA:0:12}" > .sure-version
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+      - name: Log in to GHCR
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push image
+        id: build
+        uses: docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/tiberio87/sure:it-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/tiberio87/sure
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.description=Sure Italian localization fork
+          build-args: |
+            BUILD_COMMIT_SHA=${{ github.sha }}
+      - name: Write immutable deployment reference
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          echo "Deploy with image:"
+          echo "ghcr.io/tiberio87/sure@${IMAGE_DIGEST}"
+          echo "Do not use a mutable image tag in Kubernetes."
