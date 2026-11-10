@@ -101,6 +101,7 @@ it:
         password_missing_number: La password deve contenere almeno un numero.
         password_missing_special: La password deve contenere almeno un carattere speciale.
         last_super_admin_error: Impossibile retrocedere l'ultimo super amministratore del sistema.
+        password_disabled: "Non è possibile impostare una password perché gli utenti possono accedere soltanto tramite SSO."
       destroy:
         success: Accesso dell'utente revocato ed eliminazione definitiva pianificata.
         failure: Impossibile rimuovere l'utente.
