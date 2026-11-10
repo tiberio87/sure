@@ -41,6 +41,40 @@ it:
     configurations:
       update:
         success: Importazione configurata con successo.
+        monarch_success: "Scelte dei conti salvate."
+      monarch:
+        title: "Verifica ogni conto Monarch"
+        description: "Scegli dove importare ogni conto, il relativo tipo e quali dati trasferire."
+        help_title: "Come funzionano le scelte"
+        help_account: "Importa in un nuovo conto, con il nome che preferisci, oppure in uno dei tuoi conti manuali. Un conto esistente mantiene nome, tipo e movimenti; il suo saldo iniziale viene spostato all'inizio della cronologia Monarch, se rientra nell'intervallo. Lo stato sarà quello selezionato. Non puoi importare in conti che contengono posizioni o operazioni di investimento."
+        help_closed: "Imposta lo stato su Chiuso per i conti che hai chiuso. Il saldo viene azzerato il giorno successivo all'ultimo saldo Monarch e i conti non compaiono nei saldi correnti, ma restano nello storico del patrimonio netto. I conti contrassegnati come inattivi non hanno registrato attività negli ultimi %{days} giorni: non significa necessariamente che siano chiusi."
+        help_transactions: "Disattiva le transazioni per importare soltanto lo storico dei saldi del conto."
+        help_balance: "Il saldo attuale parte dall'ultimo saldo disponibile in Monarch. Se non è aggiornato, modificalo: il valore verrà registrato come saldo di oggi. Per carte di credito e prestiti, inserisci gli importi dovuti come numeri positivi."
+        table_label: "Conti Monarch"
+        import_column: "Importa"
+        account_column: "Nome del conto"
+        destination_column: "Importa in"
+        type_column: "Tipo"
+        status_column: "Stato"
+        status_open: "Aperto"
+        status_closed: "Chiuso"
+        toggle_all_label: "%{column} per ogni conto"
+        transactions_column: "Transazioni"
+        balance_column: "Saldo attuale"
+        import_label: "Importa %{name}"
+        destination_label: "Dove importare %{name}"
+        name_label: "Nome in Sure per %{name}"
+        monarch_name: "In Monarch: %{name}"
+        type_label: "Tipo di %{name}"
+        status_label: "%{name} è aperto"
+        transactions_label: "Importa le transazioni di %{name}"
+        balance_label: "Saldo attuale di %{name}"
+        new_account: "Nuovo conto"
+        inactive: "Inattivo"
+        last_activity: "Ultima attività: %{date}"
+        no_activity: "Nessuna attività"
+        no_transactions: "Nessuna"
+        submit: "Rivedi importazione"
       account_import:
         leave_empty: Lascia vuoto
         default: Predefinito
@@ -196,7 +230,22 @@ it:
         qif_account_required: Seleziona un conto per l'importazione QIF
       update:
         qif_uploaded: "File QIF caricato con successo."
+        monarch_uploaded: "Esportazioni Monarch caricate."
+        monarch_balances_required: "Seleziona il file dei saldi esportato da Monarch."
       show:
+        monarch_title: "Carica le esportazioni Monarch"
+        monarch_description: "Importa conti, transazioni e storico dei saldi da Monarch."
+        monarch_export_title: "Scarica i dati da Monarch"
+        monarch_export_step_settings_html: "Accedi a Monarch dal browser e apri %{link}."
+        monarch_export_settings_link: "Impostazioni → Dati"
+        monarch_export_step_download: "Scarica le transazioni e lo storico dei saldi dei conti, ciascuno in un file CSV."
+        monarch_export_step_upload: "Seleziona i file qui sotto."
+        monarch_export_help_html: "Monarch spiega come scaricare i file nella %{link}."
+        monarch_export_help_link: "guida dedicata"
+        monarch_balances_label: "Esportazione dei saldi"
+        monarch_transactions_label: "Esportazione delle transazioni"
+        monarch_transactions_hint: "Ometti il file delle transazioni per importare soltanto lo storico dei saldi."
+        monarch_upload_button: "Carica esportazioni"
         csv_invalid: "Deve essere un CSV valido con intestazioni e almeno una riga di dati"
         drop_csv_title: Trascina CSV per caricare
         drop_csv_subtitle: Il tuo file verrà caricato automaticamente
@@ -330,6 +379,7 @@ it:
       mint_import: "Importazione Mint"
       actual_import: "Importazione Actual"
       ynab_import: "Importazione YNAB"
+      monarch_import: "Importazione Monarch"
       qif_import: "Importazione QIF"
       category_import: "Importazione categorie"
       rule_import: "Importazione regole"
@@ -339,6 +389,7 @@ it:
       sure_import: "Importazione Sure"
     steps:
       upload: Carica
+      accounts: Conti
       configure: Configura
       clean: Pulisci
       map: Mappa
@@ -393,6 +444,7 @@ it:
       tab_financial_tools: Strumenti finanziari e file
       tab_raw_data: Dati grezzi
       import_ynab: Importa da YNAB
+      import_monarch: Importa da Monarch
       import_accounts: Importa conti
       import_categories: Importa categorie
       import_merchants: Importa esercenti
@@ -431,6 +483,26 @@ it:
       finalize_mappings: Finalizza le mappature prima di procedere.
     ready:
       description: Ecco un riepilogo dei nuovi elementi che verranno aggiunti al tuo conto una volta pubblicata questa importazione.
+      monarch_existing_names_title: "Esistono già conti con questi nomi"
+      monarch_existing_names_description: "Hai già conti denominati %{names}. Se prosegui, verranno creati nuovi conti accanto a quelli esistenti. Per importare i dati in uno dei conti esistenti, selezionalo nel passaggio Conti."
+      monarch_conflicts_title: "Alcuni saldi esistenti differiscono da Monarch"
+      monarch_conflicts_description:
+        one: "In un giorno, un conto di destinazione presenta già un saldo diverso da quello di Monarch. Verrà mantenuto il valore esistente."
+        other: "In %{count} giorni, i conti di destinazione presentano saldi diversi da quelli di Monarch. Verranno mantenuti i valori esistenti."
+      monarch_overlap_title: "Transazioni esistenti nello stesso periodo"
+      monarch_overlap_description:
+        one: "Una transazione esistente rientra nello storico Monarch del conto di destinazione ma non corrisponde a una transazione Monarch. Verrà mantenuta e conteggiata nel saldo."
+        other: "%{count} transazioni esistenti rientrano nello storico Monarch dei conti di destinazione ma non corrispondono a transazioni Monarch. Verranno mantenute e conteggiate nei saldi."
+      monarch_duplicates_title: "Le transazioni già presenti in Sure verranno ignorate"
+      monarch_duplicates_description:
+        one: "Una transazione Monarch è già presente nel conto di destinazione, perché importata in precedenza o perché ha la stessa data e lo stesso importo. Verrà ignorata."
+        other: "%{count} transazioni Monarch sono già presenti nei conti di destinazione, perché importate in precedenza o perché hanno la stessa data e lo stesso importo. Verranno ignorate."
+      monarch_kept_title: "Alcuni saldi iniziali conservano le modifiche apportate"
+      monarch_kept_description: "L'annullamento dell'importazione non ha ripristinato il saldo iniziale di %{names}, perché è stato modificato dopo l'importazione. Verificalo prima di importare nuovamente."
+      monarch_opening_title: "I saldi iniziali verranno spostati"
+      monarch_opening_description:
+        one: "Il saldo iniziale di un conto esistente verrà spostato all'inizio del relativo storico Monarch. Annullando l'importazione, tornerà alla posizione precedente."
+        other: "I saldi iniziali di %{count} conti esistenti verranno spostati all'inizio dei rispettivi storici Monarch. Annullando l'importazione, torneranno alla posizione precedente."
       title: Conferma i tuoi dati di importazione
       summary_item_label: Elemento
       summary_count_label: Conteggio
