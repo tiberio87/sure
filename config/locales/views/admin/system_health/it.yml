@@ -315,3 +315,46 @@ it:
         eligible: "Idoneo"
         not_eligible: "Non idoneo"
         synthetic_demo: "Demo simulata"
+      optional_services:
+        title: "Servizi facoltativi"
+        description: "Integrazioni facoltative per chi gestisce l'istanza. I servizi non configurati sono mostrati a scopo informativo. I controlli esaminano soltanto le impostazioni: non verificano la connettività, non inviano eventi di prova e non modificano il consenso alle statistiche. Espandi un servizio per vedere i dettagli di configurazione."
+        missing_settings: "Impostazioni mancanti: %{settings}"
+        statuses:
+          configured: "Configurato"
+          not_configured: "Non configurato"
+          incomplete: "Configurazione incompleta"
+          disabled: "Disabilitato in questo processo"
+          not_checked: "Non verificato"
+        notes:
+          environment_disabled: "L'integrazione caricata è disabilitata per questo ambiente Rails."
+          explicitly_disabled: "SKYLIGHT_ENABLED disabilita esplicitamente il monitoraggio."
+          self_hosted_checkout_disabled: "Il pagamento degli abbonamenti e il portale di fatturazione sono disabilitati in modalità self-hosted. I webhook Stripe possono comunque essere configurati; in questo caso non sono richiesti gli ID dei prezzi per il checkout."
+          browser_analytics_disabled: "Le statistiche nel browser sono disabilitate in questo ambiente. Questo non disabilita il client server configurato separatamente."
+          shared_feedback_configured: "I feedback nella versione self-hosted utilizzano un progetto separato incluso nell'applicazione, abilitato dalla relativa configurazione. Non richiedono una POSTHOG_KEY dell'operatore. La rinuncia nel browser e la disponibilità dell'SDK non vengono controllate."
+          shared_feedback_disabled: "Il progetto separato dei feedback self-hosted è disabilitato dalle relative impostazioni o da quelle dell'ambiente. Questo non disabilita le statistiche gestite dall'operatore."
+          production_only: "Nella configurazione attuale dell'applicazione, questa integrazione viene usata soltanto in produzione."
+        services:
+          langfuse:
+            title: "Langfuse"
+            description: "Tracciamento IA e report di valutazione facoltativi. Questo controllo non invia tracce né richieste di valutazione."
+            guidance: "Imposta insieme LANGFUSE_PUBLIC_KEY e LANGFUSE_SECRET_KEY. LANGFUSE_HOST è facoltativo. Riavvia i servizi interessati dopo aver modificato le impostazioni."
+          sentry:
+            title: "Sentry"
+            description: "Segnalazione facoltativa di errori e prestazioni. L'inizializzatore attuale abilita le segnalazioni solo in produzione."
+            guidance: "Imposta SENTRY_DSN e riavvia i servizi interessati. Questo controllo esamina la configurazione dell'SDK caricato senza acquisire errori né inviare eventi."
+          skylight:
+            title: "Skylight"
+            description: "Monitoraggio facoltativo delle prestazioni dell'applicazione. La presenza della configurazione non garantisce che l'agente sia attivo o invii dati."
+            guidance: "Imposta SKYLIGHT_AUTHENTICATION e assicurati che Skylight venga caricato nell'ambiente Rails desiderato. SKYLIGHT_ENABLED=false disabilita il monitoraggio; da sola, questa variabile non carica la gemma. Riavvia dopo le modifiche."
+          stripe:
+            title: "Stripe"
+            description: "Fatturazione facoltativa degli abbonamenti e webhook di pagamento. Questo controllo non crea client Stripe, non verifica le credenziali e non effettua richieste di pagamento."
+            guidance: "Imposta insieme STRIPE_SECRET_KEY e STRIPE_WEBHOOK_SECRET. Per il checkout degli abbonamenti gestiti servono anche STRIPE_MONTHLY_PRICE_ID e STRIPE_ANNUAL_PRICE_ID."
+          posthog:
+            title: "PostHog"
+            description: "Statistiche facoltative gestite dall'operatore, secondo la configurazione caricata all'avvio. Lo stato «Configurato» non significa che l'utente abbia acconsentito alle statistiche."
+            guidance: "Imposta POSTHOG_KEY e una POSTHOG_HOST non vuota, oppure lascia l'host non impostato per usare quello predefinito. Le statistiche nel browser richiedono la produzione oppure POSTHOG_DEVELOPMENT_ENABLED in sviluppo. POSTHOG_FEEDBACK_ENABLED controlla i feedback self-hosted separati, non le statistiche dell'operatore."
+          logtail:
+            title: "Logtail"
+            description: "Inoltro facoltativo dei log di produzione. Se non configurato, l'applicazione continua a scrivere i log sull'output standard."
+            guidance: "Imposta insieme LOGTAIL_API_KEY e LOGTAIL_INGESTING_HOST e riavvia i servizi interessati. Questo controllo non invia log di prova."
