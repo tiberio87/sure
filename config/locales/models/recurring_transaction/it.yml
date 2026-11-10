@@ -25,9 +25,13 @@ it:
     attributes:
       recurring_transaction:
         payment_url: Link di pagamento
+        frequency_interval: "Intervallo di ripetizione"
   recurring_transactions:
     allocator:
       missing_rate: nessun tasso di cambio da %{from} a %{to}; inserisci un importo esplicitamente
       unmeasurable: questa transazione ha un'assegnazione che non può essere convertita in %{currency}, quindi la parte restante non può essere calcolata. Aggiungi un tasso di cambio per il %{date} o rimuovi prima il pagamento esistente
       over_allocated: assegnare %{amount} supera il residuo della transazione di %{capacity} %{currency}
       exceeds_remaining: '%{amount} supera i %{remaining} rimanenti per questo ciclo'
+
+      entry_exhausted: "l'intero importo di questa transazione è già stato attribuito ad altri pagamenti in scadenza"
+      already_allocated: "questa transazione è già stata attribuita a questa bolletta"
