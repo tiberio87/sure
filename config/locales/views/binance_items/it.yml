@@ -63,6 +63,10 @@ it:
       errors:
         only_manual: Solo i conti manuali possono essere collegati a Binance
         invalid_binance_account: Conto Binance non valido
+    select_accounts:
+      connection_unavailable: "Questa connessione Binance non è disponibile. Selezionane una nelle impostazioni dei provider."
+      no_credentials_configured: "Collega Binance nelle impostazioni dei provider prima di aggiungere i suoi conti."
+      select_connection: "Seleziona una connessione Binance nelle impostazioni dei provider."
   binance_item:
     syncer:
       checking_credentials: Verifica credenziali...
