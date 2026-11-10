@@ -48,6 +48,8 @@ permissions:
 
 jobs:
   prepare:
+    # Fork images are built exclusively from the Italian branch by its own workflow.
+    if: github.repository == 'we-promise/sure'
     name: Resolve canonical release
     runs-on: ubuntu-latest
     permissions:
