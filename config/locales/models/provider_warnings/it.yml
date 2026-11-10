@@ -10,3 +10,22 @@ it:
       one: 'Importazione Lunchflow: recupero delle transazioni non riuscito per %{count} conto'
       other: 'Importazione Lunchflow: recupero delle transazioni non riuscito per %{count} conti'
     lunchflow_import_error: 'Importazione Lunchflow: %{error}'
+
+    truelayer_accounts_failed:
+      one: "Importazione TrueLayer: impossibile aggiornare %{count} conto"
+      other: "Importazione TrueLayer: impossibile aggiornare %{count} conti"
+    truelayer_transactions_failed:
+      one: "Importazione TrueLayer: recupero delle transazioni non riuscito per %{count} conto"
+      other: "Importazione TrueLayer: recupero delle transazioni non riuscito per %{count} conti"
+    truelayer_balances_failed:
+      one: "Importazione TrueLayer: recupero del saldo non riuscito per %{count} conto"
+      other: "Importazione TrueLayer: recupero dei saldi non riuscito per %{count} conti"
+    truelayer_processing_failed:
+      one: "Importazione TrueLayer: impossibile elaborare %{count} conto"
+      other: "Importazione TrueLayer: impossibile elaborare %{count} conti"
+    truelayer_entries_failed:
+      one: "Importazione TrueLayer: impossibile importare %{count} transazione"
+      other: "Importazione TrueLayer: impossibile importare %{count} transazioni"
+    truelayer_scheduling_failed:
+      one: "Importazione TrueLayer: impossibile programmare l'aggiornamento del saldo per %{count} conto"
+      other: "Importazione TrueLayer: impossibile programmare l'aggiornamento del saldo per %{count} conti"
