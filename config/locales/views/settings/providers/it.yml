@@ -13,7 +13,7 @@ it:
         ok: Connesso
         warn: Azione richiesta
         err: Errore
-        off: Non configurato
+        "off": Non configurato
       maturity:
         beta: Beta
         alpha: Alpha
