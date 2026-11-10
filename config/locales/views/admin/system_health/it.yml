@@ -40,6 +40,7 @@ it:
           failed: Non riuscita; controlla i log di debug push
           enqueue_failed: Impossibile mettere in coda; controlla Sidekiq
           expired: Scaduta senza un risultato finale
+        results_label: "Risultati del test"
       push_notification:
         title: Notifica di prova di Sure
         body: Questa è una notifica push di prova per il tuo account Sure.
@@ -254,3 +255,63 @@ it:
           local_setup:
             title: Configurazione locale consigliata
             description: Esegui l'LLM tramite il tuo endpoint locale compatibile con OpenAI, salva i vettori dei documenti in pgvector e punta le impostazioni di embedding a un endpoint di embedding compatibile con OpenAI. L'immagine PostgreSQL deve includere l'estensione vector e le dimensioni degli embedding devono corrispondere al modello selezionato.
+
+      hosted_usage:
+        loading: "Caricamento delle statistiche di utilizzo della versione ospitata…"
+        title: "Utilizzo della versione ospitata"
+        snapshot: "Istantanea del database in sola lettura aggiornata alle %{time}"
+        summary:
+          trial_households_count: "Nuclei familiari in prova (ultimi 30 giorni)"
+          trial_members_count: "Account dei membri attualmente in prova"
+          trials_expiring_soon_count: "Prove in scadenza nei prossimi 7 giorni"
+          cleanup_eligible_count: "Nuclei familiari idonei alla pulizia"
+          active_supporter_households_count: "Nuclei familiari sostenitori attivi (dati locali)"
+          supporter_subscription_count: "Record di abbonamento collegati a Stripe"
+        summary_help: "I totali delle prove includono gli abbonamenti registrati negli ultimi 30 giorni. I totali delle prove in scadenza, della pulizia e dei sostenitori includono tutti i record attuali corrispondenti, senza i limiti delle tabelle."
+        limitations_title: "Come interpretare questi numeri"
+        limitations: "Le tabelle attuali non conservano la cronologia completa delle prove, dei pagamenti o delle attività nelle sessioni. La creazione di un abbonamento può derivare da un'importazione. Gli account dei membri non corrispondono necessariamente a persone uniche verificate. Questa schermata non modifica i dati dei nuclei familiari né degli abbonamenti. I ripristini della demo condivisa eliminano nuclei familiari e sessioni precedenti, quindi non è possibile ricostruire la cronologia dei visitatori."
+        trials:
+          title: "Nuclei familiari in prova recenti"
+          description: "Abbonamenti registrati dal %{date} con una data di fine prova, comprese le prove convertite. Visualizzati fino a %{limit} nuclei familiari."
+          sessions_help: "Le sessioni sono record di accesso conservati per gli utenti abilitati, non utenti attualmente online né visite. La disconnessione elimina il record. L'ora dell'ultima creazione non indica l'ultima attività."
+          empty: "Nessun nucleo familiare in prova registrato in questo periodo"
+        cleanup:
+          title: "Idoneità alla pulizia"
+          description: "Corrisponde ai criteri attuali di pulizia: abbonamento sospeso o in prova terminato da oltre 14 giorni, oppure nessun abbonamento e nucleo familiare creato da oltre 45 + 14 giorni. Visualizzati fino a %{limit} nuclei familiari."
+          eligibility_help: "Gli accessi recenti non impediscono la corrispondenza. L'idoneità non conferma l'eliminazione; i 90 giorni riguardano la conservazione degli archivi, non la soglia per la pulizia delle prove."
+          disabled: "La pulizia programmata delle prove è disabilitata al di fuori della modalità gestita. Sono mostrate soltanto le corrispondenze con i criteri."
+          empty: "Nessun nucleo familiare soddisfa i criteri di pulizia"
+          reasons:
+            expired_trial_grace_elapsed: "Prova terminata; trascorsi i 14 giorni di tolleranza"
+            no_subscription_grace_elapsed: "Nessun abbonamento; trascorsi 45 + 14 giorni"
+        supporters:
+          title: "Stato locale dei sostenitori"
+          description: "Record di abbonamento locali attuali con ID cliente e abbonamento nel formato Stripe; è escluso l'abbonamento demo simulato. Gli stati non verificano i pagamenti ricevuti né le date del primo pagamento. Non vengono effettuate richieste a Stripe."
+          empty: "Nessun record di abbonamento collegato a Stripe"
+        columns:
+          household: "ID nucleo familiare"
+          recorded_at: "Abbonamento registrato"
+          trial_ends_at: "Fine prova"
+          status: "Stato attuale"
+          members: "Account dei membri"
+          retained_sessions: "Sessioni di accesso conservate"
+          recent_sessions: "Sessioni conservate create negli ultimi 30 giorni"
+          latest_session: "Ultimo accesso conservato"
+          cleanup_eligible: "Idoneo alla pulizia"
+          cleanup_reason: "Motivo"
+          subscription_rows: "Record di abbonamento"
+        statuses:
+          unknown: "Sconosciuto"
+          incomplete: "Incompleto"
+          incomplete_expired: "Incompleto, scaduto"
+          trialing: "In prova"
+          active: "Attivo"
+          past_due: "Pagamento scaduto"
+          canceled: "Annullato"
+          unpaid: "Non pagato"
+          paused: "In pausa"
+          no_subscription: "Nessun abbonamento"
+        not_recorded: "Non registrato"
+        eligible: "Idoneo"
+        not_eligible: "Non idoneo"
+        synthetic_demo: "Demo simulata"
