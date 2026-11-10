@@ -19,6 +19,19 @@ it:
       new: Nuovo
       dismissed: Insight ignorato
       undo: Annulla
+    card:
+      dig_in: "Approfondisci con l’IA"
+    dig_in:
+      prompt: |-
+        Aiutami ad approfondire questa analisi.
+
+        Analisi: %{title}
+        Risultato individuato da Sure: %{body}
+        Periodo: %{period}
+        Dati:
+        %{facts}
+
+        Quali sono le cause e c'è qualcosa che dovrei fare?
     feed:
       acknowledge_aria: "Ricevuto: %{title}"
       view_all: Vedi tutti gli insight
