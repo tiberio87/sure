@@ -1,0 +1,128 @@
+name: Maintain Italian Sure fork
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * 1"
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sure-italian-fork-maintenance
+  cancel-in-progress: false
+
+jobs:
+  propose-upstream:
+    name: Propose upstream changes for main
+    if: github.repository == 'tiberio87/sure' && github.event_name != 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout fork main with history
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Merge upstream into an isolated proposal branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          git remote add upstream https://github.com/we-promise/sure.git
+          git fetch --no-tags upstream +refs/heads/main:refs/remotes/upstream/main
+
+          if git merge-base --is-ancestor refs/remotes/upstream/main refs/remotes/origin/main; then
+            echo "Fork main already contains upstream main." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          branch="bot/sure-upstream-main"
+          git switch -C "$branch" refs/remotes/origin/main
+          # Conflicts deliberately fail the workflow: never auto-resolve upstream changes.
+          git merge --no-ff --no-edit -m "Merge we-promise/sure main into fork" refs/remotes/upstream/main
+          git diff --check refs/remotes/origin/main..HEAD
+
+          old="$(git ls-remote --heads origin "refs/heads/$branch" | cut -f1)"
+          if [[ -n "$old" ]]; then
+            git push --force-with-lease="refs/heads/$branch:$old" origin "HEAD:refs/heads/$branch"
+          else
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+
+          number="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          if [[ -z "$number" ]]; then
+            gh pr create --draft --base main --head "$branch" \
+              --title "chore(fork): sync Sure from upstream" \
+              --body "Review upstream changes before merging. This keeps local fork-maintenance workflows and does not touch the Italian branch. Run CI manually: GitHub-token-created PRs do not trigger the normal pull_request workflows."
+          else
+            echo "Updated existing PR #$number."
+          fi
+          echo "Proposed upstream update: $branch" >> "$GITHUB_STEP_SUMMARY"
+
+  propose-italian:
+    name: Propose main changes for Italian branch
+    if: github.repository == 'tiberio87/sure'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout fork with history
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Merge fork main into isolated Italian proposal
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --no-tags origin \
+            +refs/heads/main:refs/remotes/origin/main \
+            +refs/heads/i18n/italian-complete:refs/remotes/origin/i18n/italian-complete
+
+          if git merge-base --is-ancestor refs/remotes/origin/main refs/remotes/origin/i18n/italian-complete; then
+            echo "Italian branch already contains fork main." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # A maintainer may already be syncing main manually (e.g. PR #3).
+          # Avoid generating a second PR for the same main-to-Italian merge.
+          manual_pr="$(gh pr list --base i18n/italian-complete --head main --state open --json number --jq '.[0].number // empty')"
+          if [[ -n "$manual_pr" ]]; then
+            echo "Existing main-to-Italian PR #$manual_pr; no duplicate proposal." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          branch="bot/sure-main-to-italian"
+          git switch -C "$branch" refs/remotes/origin/i18n/italian-complete
+          # Preserve translations; conflicts require manual review.
+          git merge --no-ff --no-edit -m "Merge fork main into Italian branch" refs/remotes/origin/main
+          git diff --check refs/remotes/origin/i18n/italian-complete..HEAD
+
+          old="$(git ls-remote --heads origin "refs/heads/$branch" | cut -f1)"
+          if [[ -n "$old" ]]; then
+            git push --force-with-lease="refs/heads/$branch:$old" origin "HEAD:refs/heads/$branch"
+          else
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+
+          number="$(gh pr list --base i18n/italian-complete --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          if [[ -z "$number" ]]; then
+            gh pr create --draft --base i18n/italian-complete --head "$branch" \
+              --title "chore(i18n): bring fork main into Italian branch" \
+              --body "Review code changes and any locale interactions before merging. Do not discard Italian translations. Run CI manually: GitHub-token-created PRs do not trigger the normal pull_request workflows."
+          else
+            echo "Updated existing PR #$number."
+          fi
+          echo "Proposed Italian update: $branch" >> "$GITHUB_STEP_SUMMARY"

@@ -48,6 +48,9 @@ permissions:
 
 jobs:
   prepare:
+    # The original Sure release pipeline must not publish from a personal fork.
+    # All downstream jobs require this prepare job, so they are skipped here.
+    if: github.repository == 'we-promise/sure'
     name: Resolve canonical release
     runs-on: ubuntu-latest
     permissions:
