@@ -120,7 +120,7 @@ it:
       syncing: Sincronizzazione in corso...
       update: Aggiorna
       stale_pending_note: "(escluso dai budget)"
-      stale_pending_accounts: "in: %{accounts}"
+      stale_pending_accounts: "nei conti: %{accounts}"
       reconciled_details_note: "(vedi riepilogo sincronizzazione per i dettagli)"
       duplicate_accounts_skipped: "Alcuni conti sono stati saltati come duplicati — usa 'Collega conti esistenti' per unirli."
     select_existing_account:
