@@ -13,6 +13,9 @@ it:
     name_desc:
       label: Nome (Z-A)
       label_short: Nome ↓
+    manual:
+      label: "Manuale (trascina per riordinare)"
+      label_short: "Manuale"
   activerecord:
     attributes:
       account:
@@ -22,6 +25,7 @@ it:
         family_id: "%{moniker}"
         name: Nome
         subtype: Sottotipo
+        logo: "Logo"
     models:
       account: Conto
       account/credit: Carta di credito
@@ -32,3 +36,11 @@ it:
       account/other_liability: Altra passività
       account/property: Immobile
       account/vehicle: Veicolo
+
+    errors:
+      models:
+        account:
+          attributes:
+            logo:
+              invalid_content_type: "deve essere un'immagine PNG, JPEG, GIF, WebP o ICO"
+              too_large: "deve essere inferiore a %{max_size} MB"
