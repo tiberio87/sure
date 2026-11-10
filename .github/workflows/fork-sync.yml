@@ -1,0 +1,87 @@
+name: Fork - upstream sync PRs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 1"
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: fork-sync
+  cancel-in-progress: false
+
+jobs:
+  upstream-to-main:
+    name: Propose upstream main changes
+    if: github.repository == 'tiberio87/sure' && github.event_name != 'push'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          fetch-depth: 0
+      - name: Create reviewable sync PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/we-promise/sure.git
+          git fetch upstream main
+          git fetch origin main
+          if git merge-base --is-ancestor upstream/main origin/main; then
+            echo "Main already contains upstream changes."
+            exit 0
+          fi
+          if [[ "$(gh pr list --base main --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("sync/upstream-"))] | length')" != 0 ]]; then
+            echo "An upstream sync PR is already open."
+            exit 0
+          fi
+          branch="sync/upstream-$(git rev-parse --short=12 upstream/main)-${GITHUB_RUN_ID}"
+          git switch -c "$branch" origin/main
+          # Conflicts must be resolved by a human. Never use -X theirs/ours.
+          git merge --no-edit upstream/main
+          git push origin "HEAD:refs/heads/$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore(upstream): synchronize Sure main" \
+            --body "Review upstream commits, application migrations and the inherited GitHub Actions workflows before merging. No automatic deployment is triggered."
+
+  main-to-italian:
+    name: Propose Italian branch refresh
+    if: github.repository == 'tiberio87/sure'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          fetch-depth: 0
+      - name: Create reviewable Italian sync PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main i18n/italian-complete
+          if git merge-base --is-ancestor origin/main origin/i18n/italian-complete; then
+            echo "Italian branch already contains current main."
+            exit 0
+          fi
+          if [[ "$(gh pr list --base i18n/italian-complete --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("sync/italian-"))] | length')" != 0 ]]; then
+            echo "An Italian sync PR is already open."
+            exit 0
+          fi
+          branch="sync/italian-$(git rev-parse --short=12 origin/main)-${GITHUB_RUN_ID}"
+          git switch -c "$branch" origin/i18n/italian-complete
+          # Preserve both project updates and translations; stop on conflict.
+          git merge --no-edit origin/main
+          git push origin "HEAD:refs/heads/$branch"
+          gh pr create --base i18n/italian-complete --head "$branch" \
+            --title "chore(i18n): sync Italian branch with main" \
+            --body "Review upstream changes and locale collisions; merge only after the relevant tests have passed. Image publication remains gated by checks."
