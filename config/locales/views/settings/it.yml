@@ -39,6 +39,7 @@ it:
       debug_label: Debug
       background_jobs_label: Job in background
       system_health_label: Stato del sistema
+      classifier_label: "Classificatore"
     settings_nav_link_large:
       next: Avanti
       previous: Indietro
