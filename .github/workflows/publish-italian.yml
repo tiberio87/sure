@@ -1,0 +1,148 @@
+name: Publish Italian Sure image
+
+on:
+  push:
+    branches:
+      - i18n/italian-complete
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sure-italian-image-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  locale-validation:
+    name: Check Italian locale files
+    if: github.repository == 'tiberio87/sure' && github.ref == 'refs/heads/i18n/italian-complete'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@97ecb7b512899eb71ab1bf2310a624c6f1589ac6 # v1.308.0
+        with:
+          ruby-version: .ruby-version
+
+      - name: Validate YAML syntax, English key coverage and interpolation
+        shell: bash
+        run: |
+          ruby <<'RUBY'
+          require "yaml"
+          require "date"
+
+          def leaves(value, prefix = [])
+            case value
+            when Hash
+              value.each_with_object({}) do |(key, item), result|
+                result.merge!(leaves(item, prefix + [key.to_s]))
+              end
+            else
+              { prefix.join(".") => value }
+            end
+          end
+
+          files = Dir.glob("config/locales/**/en.yml").sort
+          abort "No English locale files found" if files.empty?
+
+          failures = []
+          files.each do |english_path|
+            italian_path = english_path.sub(/en\.yml\z/, "it.yml")
+            unless File.file?(italian_path)
+              failures << "Missing file: #{italian_path}"
+              next
+            end
+
+            begin
+              english = YAML.safe_load_file(english_path, permitted_classes: [Date, Time], aliases: true).fetch("en")
+              italian = YAML.safe_load_file(italian_path, permitted_classes: [Date, Time], aliases: true).fetch("it")
+              en_keys = leaves(english)
+              it_keys = leaves(italian)
+              (en_keys.keys - it_keys.keys).each { |key| failures << "Missing: #{italian_path}:#{key}" }
+
+              (en_keys.keys & it_keys.keys).each do |key|
+                next unless en_keys[key].is_a?(String) && it_keys[key].is_a?(String)
+                expected = en_keys[key].scan(/%\{([a-zA-Z0-9_]+)\}/).flatten.sort
+                found = it_keys[key].scan(/%\{([a-zA-Z0-9_]+)\}/).flatten.sort
+                failures << "Interpolation mismatch: #{italian_path}:#{key}" if expected != found
+              end
+            rescue StandardError => error
+              failures << "#{italian_path}: #{error.class}: #{error.message}"
+            end
+          end
+
+          puts "Checked #{files.size} locale file pairs."
+          abort failures.join("\n") unless failures.empty?
+          puts "Italian locale validation passed."
+          RUBY
+
+  application-ci:
+    name: Run official Sure CI
+    if: github.repository == 'tiberio87/sure' && github.ref == 'refs/heads/i18n/italian-complete'
+    uses: ./.github/workflows/ci.yml
+    with:
+      require_js_dependency_audit: false
+
+  build-image:
+    name: Build and publish linux/amd64 image
+    needs: [locale-validation, application-ci]
+    if: github.repository == 'tiberio87/sure' && github.ref == 'refs/heads/i18n/italian-complete'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
+
+      - name: Write embedded app version
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(date -u +%Y.%-m.%-d)-it.${GITHUB_SHA:0:12}"
+          printf '%s\n' "$version" > .sure-version
+          echo "Building Sure $version"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+
+      - name: Log in to GHCR
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish immutable commit tag
+        id: build
+        uses: docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f # v7.1.0
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/tiberio87/sure-italian:sha-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/tiberio87/sure
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.licenses=AGPL-3.0
+          build-args: |
+            BUILD_COMMIT_SHA=${{ github.sha }}
+          cache-from: type=gha,scope=sure-italian-amd64
+          cache-to: type=gha,scope=sure-italian-amd64,mode=max
+
+      - name: Record image digest
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          {
+            echo "### Italian Sure image"
+            echo
+            echo "\`ghcr.io/tiberio87/sure-italian@\${DIGEST}\`"
+            echo
+            echo "Only use the digest in the GitOps deployment PR; nothing is deployed automatically."
+          } >> "$GITHUB_STEP_SUMMARY"
