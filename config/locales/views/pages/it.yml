@@ -80,6 +80,7 @@ it:
           cash_flow: "Flusso di cassa"
           surplus: "Avanzo"
           deficit: "Disavanzo"
+          invested: "Investito"
         title: Nuovo grafico Sankey
         preview: Anteprima
         preview_tooltip: Sostituirà la visualizzazione qui sopra, perché usa una nuova API condivisa con il client mobile Swift.
@@ -92,6 +93,15 @@ it:
         feedback_thanks: Grazie per aiutarci a migliorare il grafico!
         feedback_privacy: La tua risposta viene inviata a PostHog. Descrivi il problema senza numeri di conto, saldi o altri dati finanziari privati.
         feedback_submit: Invia feedback
+        opt_in_title: "Mostra il nuovo grafico"
+        opt_in_description: "Confronta un diagramma Sankey sperimentale con il grafico qui sopra. Puoi disattivarlo in qualsiasi momento."
+        group_by_label: "Raggruppa i flussi per"
+        group_by_category: "Categoria"
+        group_by_account: "Conto"
+        sort_label: "Ordina i flussi"
+        sort_auto: "Automaticamente"
+        sort_ascending: "Dal più piccolo"
+        sort_descending: "Dal più grande"
       cashflow_sankey:
         title: "Flusso di cassa"
         zoom_out: "Torna al flusso completo"
@@ -150,3 +160,17 @@ it:
         period_scope_hint: Mostra il mese scelto qui, indipendentemente dal periodo della dashboard selezionato in alto.
         no_data: Nessun dato di spesa per questo mese
         previous_comparison_days: (1-%{end_day})
+
+        filter_categories: "Filtra categorie (%{count})"
+        filter_categories_all: "Tutte le categorie"
+        search_categories: "Cerca categorie"
+        apply: "Applica"
+      customize:
+        start: "Personalizza"
+        done: "Fine"
+        hide: "Nascondi %{title}"
+        hidden_title: "Widget nascosti"
+        hidden_description: "Aggiungi di nuovo un widget alla dashboard."
+        none_hidden: "Tutti i widget sono visibili. Nascondine uno usando il pulsante con l'occhio."
+        all_hidden_title: "Tutti i widget sono nascosti"
+        all_hidden_description: "Personalizza la dashboard per mostrare nuovamente i widget."
