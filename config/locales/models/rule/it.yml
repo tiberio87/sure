@@ -9,6 +9,7 @@ it:
           nested_conditions: "Le condizioni composte non possono essere nidificate"
 
           split_not_alone: "Una regola di suddivisione non può avere altre azioni"
+        rule/action:
           attributes:
             value:
               invalid_config: "deve essere una configurazione di suddivisione valida"
@@ -24,6 +25,9 @@ it:
               percentages_must_total_100: "le percentuali devono sommare al 100% (totale attuale: %{total})"
               fixed_requires_exact_amount_condition: "le suddivisioni a importo fisso richiedono una condizione che corrisponda all'importo esatto della transazione (es. Importo = 42,00); in caso contrario, le quote potrebbero non sommare correttamente al totale di ogni transazione corrispondente"
               fixed_shares_must_equal_condition_amount: "le quote delle suddivisioni devono sommare a %{amount}, l'importo esatto richiesto dalla condizione della regola"
+        rule/condition:
+          attributes:
+            value:
               regex_invalid: "non è un'espressione regolare valida"
               regex_too_complex: "è troppo complessa per essere eseguita in sicurezza"
               regex_too_long: "è troppo lunga (massimo %{count} caratteri)"
