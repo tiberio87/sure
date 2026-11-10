@@ -96,6 +96,14 @@ jobs:
             exit 0
           fi
 
+          # A maintainer may already be syncing main manually (e.g. PR #3).
+          # Avoid generating a second PR for the same main-to-Italian merge.
+          manual_pr="$(gh pr list --base i18n/italian-complete --head main --state open --json number --jq '.[0].number // empty')"
+          if [[ -n "$manual_pr" ]]; then
+            echo "Existing main-to-Italian PR #$manual_pr; no duplicate proposal." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
           branch="bot/sure-main-to-italian"
           git switch -C "$branch" refs/remotes/origin/i18n/italian-complete
           # Preserve translations; conflicts require manual review.
