@@ -49,7 +49,7 @@ jobs:
           git switch -C "$branch" refs/remotes/origin/main
           # Conflicts deliberately fail the workflow: never auto-resolve upstream changes.
           git merge --no-ff --no-edit -m "Merge we-promise/sure main into fork" refs/remotes/upstream/main
-          git diff --check refs/remotes/origin/main..HEAD
+          git diff --check refs/remotes/upstream/main..HEAD
 
           old="$(git ls-remote --heads origin "refs/heads/$branch" | cut -f1)"
           if [[ -n "$old" ]]; then
@@ -108,7 +108,7 @@ jobs:
           git switch -C "$branch" refs/remotes/origin/i18n/italian-complete
           # Preserve translations; conflicts require manual review.
           git merge --no-ff --no-edit -m "Merge fork main into Italian branch" refs/remotes/origin/main
-          git diff --check refs/remotes/origin/i18n/italian-complete..HEAD
+          git diff --check refs/remotes/origin/main..HEAD
 
           old="$(git ls-remote --heads origin "refs/heads/$branch" | cut -f1)"
           if [[ -n "$old" ]]; then
