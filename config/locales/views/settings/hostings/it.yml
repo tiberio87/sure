@@ -2,6 +2,13 @@
 it:
   settings:
     hostings:
+      terrascoutx_settings:
+        usage: "%{used} di %{limit} richieste mensili utilizzate"
+        placeholder: "Inserisci qui la tua chiave API TerraScoutX"
+        label: "Chiave API"
+        env_configured_message: "Configurato correttamente tramite la variabile d'ambiente TERRASCOUTX_API_KEY."
+        description: "Inserisci la chiave API TerraScoutX per recuperare dati e valutazioni degli immobili negli Stati Uniti quando aggiungi un immobile. Il valore è quello attribuito dall'autorità fiscale della contea nell'ultimo registro fiscale disponibile presso TerraScoutX, non una stima automatizzata di mercato. Può quindi essere meno aggiornato e sensibilmente inferiore al valore di mercato negli Stati che limitano le valutazioni fiscali, come la California. La copertura varia in base alla contea. Le chiavi sono gratuite e limitate a 2.000 richieste API al mese, condivise tra la ricerca degli immobili e gli aggiornamenti giornalieri delle valutazioni. Se la tua chiave consente più richieste, aumenta il limite con la variabile d'ambiente TERRASCOUTX_MAX_REQUESTS_PER_MONTH."
+        title: "TerraScoutX"
       invite_code_settings:
         description: Controlla come le nuove persone si registrano alla tua istanza di %{product}.
         email_confirmation_description: Quando abilitato, gli utenti devono confermare il loro indirizzo email quando lo cambiano.
@@ -11,7 +18,7 @@ it:
         default_family_none: Nessuna (crea nuova famiglia)
         generate_tokens: Genera nuovo codice
         generated_tokens: Codici generati
-        title: Onboarding
+        title: "Registrazione iniziale"
         states:
           open: Aperto
           closed: Chiuso
@@ -25,10 +32,12 @@ it:
         title: Self-Hosting
         danger_zone: Zona pericolosa
         clear_cache: Svuota cache dati
-        clear_cache_warning: Svuotare la cache dei dati rimuoverà tutti i tassi di cambio, i prezzi dei titoli, i saldi dei conti e altri dati. Questo non eliminerà conti, transazioni, categorie o altri dati degli utenti.
+        clear_cache_warning: "Svuotare la cache dei dati ricalcola i saldi e le posizioni dei conti della tua famiglia e ricarica i tassi di cambio e i prezzi dei titoli che utilizzano. Vengono eliminati solo i saldi e le posizioni della tua famiglia; i tassi di cambio e i prezzi dei titoli sono condivisi con le altre famiglie di questa istanza e vengono aggiornati anche per loro. Questo non eliminerà conti, transazioni, categorie o altri dati degli utenti."
+        clear_cache_warning_without_provider: "Svuotare la cache dei dati ricalcola i saldi e le posizioni dei conti della tua famiglia. Non è configurato alcun fornitore di tassi di cambio o di prezzi dei titoli, quindi i tassi di cambio e i prezzi salvati vengono mantenuti. Questo non eliminerà conti, transazioni, categorie o altri dati degli utenti."
         confirm_clear_cache:
           title: Svuotare la cache dei dati?
-          body: Sei sicuro di voler svuotare la cache dei dati? Questo rimuoverà tutti i tassi di cambio, i prezzi dei titoli, i saldi dei conti e altri dati. Questa azione non può essere annullata.
+          body: "Sei sicuro di voler svuotare la cache dei dati? I saldi e le posizioni dei conti della tua famiglia verranno ricalcolati e i tassi di cambio e i prezzi dei titoli che utilizzano verranno ricaricati. Vengono eliminati solo i saldi e le posizioni della tua famiglia; i tassi di cambio e i prezzi dei titoli sono condivisi con le altre famiglie di questa istanza e vengono aggiornati anche per loro. Questa azione non può essere annullata."
+          body_without_provider: "Sei sicuro di voler svuotare la cache dei dati? I saldi e le posizioni dei conti della tua famiglia verranno ricalcolati. Non è configurato alcun fornitore di tassi di cambio o di prezzi dei titoli, quindi i tassi di cambio e i prezzi salvati vengono mantenuti. Questa azione non può essere annullata."
         property_valuation_providers: Provider di valutazione immobiliare
         demo_refresh: "Aggiornamento dei dati demo"
         instance_settings_restricted: "Le credenziali dei provider, la connessione IA condivisa e le impostazioni di sincronizzazione si applicano a tutti i nuclei familiari di questa istanza, quindi solo un super amministratore può modificarle. L'assistente utilizzato dal tuo nucleo familiare viene comunque impostato separatamente. Chi ha accesso al server può promuovere un utente a super amministratore; il comando è descritto nelle note di aggiornamento della guida Docker per il self-hosting."
@@ -253,6 +262,9 @@ it:
         view_pricing: Visualizza prezzi Twelve Data
         title: Twelve Data
       update:
+        invalid_page_cache_cooldown_minutes: "I minuti tra le rigenerazioni devono essere un numero intero compreso tra %{minimum} e %{maximum}."
+        invalid_page_cache_max_mb: "La dimensione massima della cache deve essere un numero intero di megabyte compreso tra %{minimum} e %{maximum}."
+        invalid_page_cache_days: "I giorni di conservazione delle pagine in cache devono essere un numero intero compreso tra %{minimum} e %{maximum}."
         failure: Valore impostazione non valido
         success: Impostazioni aggiornate
         invalid_onboarding_state: Stato di onboarding non valido
@@ -277,6 +289,12 @@ it:
       sync_auto_sync_scheduler!:
         scheduler_sync_failed: Impostazioni salvate, ma aggiornamento pianificazione sincronizzazione fallito. Riprova o controlla i log del server.
       sync_settings:
+        page_cache_max_mb_description: "Spazio massimo complessivo occupabile dalle pagine in cache. Se una nuova pagina farebbe superare il limite, vengono rimosse per prime quelle aperte meno di recente; una pagina più grande dell'intero limite viene mostrata ma non conservata. Utilizzati %{used} di %{limit}. Valore predefinito: %{default_mb}. La variabile PAGE_CACHE_MAX_MB ha la precedenza su questo campo."
+        page_cache_max_mb_label: "Dimensione massima della cache (MB)"
+        page_cache_cooldown_minutes_description: "Quando cambiano i dati di una pagina in cache, continua a essere visualizzata la versione precedente mentre quella nuova viene generata in background, al massimo una volta ogni numero di minuti indicato. Il pulsante Aggiorna della pagina la rigenera immediatamente. Impostando 0, viene rigenerata dopo ogni modifica. Valore predefinito: %{default_minutes}. La variabile PAGE_CACHE_COOLDOWN_MINUTES ha la precedenza su questo campo."
+        page_cache_cooldown_minutes_label: "Rigenera le pagine in cache al massimo ogni (minuti)"
+        page_cache_days_description: "I report vengono generati in anticipo dopo ogni sincronizzazione e conservati per questo numero di giorni se nessuno li apre. Valore predefinito: %{default_days}. La variabile PAGE_CACHE_DAYS ha la precedenza su questo campo."
+        page_cache_days_label: "Conserva le pagine in cache per (giorni)"
         auto_sync_label: Abilita sincronizzazione automatica
         auto_sync_description: Quando abilitata, tutti i conti verranno sincronizzati automaticamente ogni giorno all'orario specificato.
         auto_sync_time_label: Orario sincronizzazione (HH:MM)

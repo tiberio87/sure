@@ -3,6 +3,14 @@ it:
   settings:
     preferences:
       show:
+        rule_suggestions_hint: "Proponi di creare una regola dopo aver modificato la categoria di una transazione"
+        rule_suggestions: "Suggerimenti di regole"
+        manual_reconciliation_hint: "Mostra i comandi di riconciliazione nei conti gestiti manualmente. I conti sincronizzati con la banca utilizzano invece la riconciliazione degli estratti conto."
+        manual_reconciliation: "Riconciliazione manuale"
+        transactions_subtitle: "Configura il comportamento delle transazioni"
+        transactions_title: "Transazioni"
+        show_balance_updates_hint: "Mostra sempre nell'attività dei conti collegati i saldi giornalieri registrati dalla sincronizzazione bancaria"
+        show_balance_updates: "Aggiornamenti dei saldi sincronizzati"
         country: Paese
         currency: Valuta
         date_format: Formato data

@@ -80,7 +80,7 @@ it:
         client_id_label: "Client ID"
         client_id_placeholder: "il-tuo-client-id"
         client_id_help: "Client ID OAuth dal tuo provider di identità"
-        client_secret_label: "Client Secret"
+        client_secret_label: "Segreto client"
         client_secret_placeholder_new: "il-tuo-client-secret"
         client_secret_placeholder_existing: "••••••••"
         client_secret_help: "Client Secret OAuth (cifrato nel database)"

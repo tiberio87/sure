@@ -4,6 +4,7 @@ it:
     errors:
       models:
         monarch_import:
+          target_not_supported: "Sure non può più importare in %{accounts}. I conti di destinazione devono essere manuali e privi di posizioni o operazioni di investimento. Scegli altre destinazioni e pubblica nuovamente l'importazione."
           missing_columns: "Nel file %{file} mancano le colonne %{columns}. È l'esportazione corretta di Monarch?"
           malformed_csv: "Il file %{file} non è un CSV leggibile: %{error}"
           invalid_number: "%{value} non è un numero valido"

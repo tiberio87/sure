@@ -44,6 +44,9 @@ it:
     new:
       title: Nuova transazione
     show:
+      lot_option: "%{date} · %{qty} a %{price}"
+      lot_oldest_first: "Prima i più vecchi"
+      lot_label: "Lotto di provenienza della vendita"
       additional: Aggiuntivo
       amount_label: Importo
       buy: Acquisto

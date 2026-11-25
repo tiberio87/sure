@@ -18,6 +18,12 @@ it:
       label_short: "Manuale"
   activerecord:
     attributes:
+      loan:
+        subtype: "Tipo di finanziamento"
+      investment:
+        subtype: "Tipo di investimento"
+      depository:
+        subtype: "Tipo di conto"
       account:
         balance: Saldo
         currency: Valuta
@@ -41,6 +47,8 @@ it:
       models:
         account:
           attributes:
+            base:
+              cost_tag_other_family: "Il tag dei costi deve essere uno dei tuoi tag"
             logo:
               invalid_content_type: "deve essere un'immagine PNG, JPEG, GIF, WebP o ICO"
               too_large: "deve essere inferiore a %{max_size} MB"

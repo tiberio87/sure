@@ -60,6 +60,7 @@ it:
     transfer_feature_disabled: Le transazioni ricorrenti sono disabilitate per questa famiglia
 
     frequency_presets:
+      once: "Una volta"
       monthly: Mensile
       weekly: Settimanale
       biweekly: Ogni 2 settimane
@@ -70,6 +71,8 @@ it:
       custom: Pianificazione personalizzata
       interval: "Intervallo personalizzato"
     frequency:
+      once_on: "Una volta il %{date}"
+      once: "Una volta"
       monthly: 'Mensile, giorno: %{day}'
       weekly: Settimanale, di %{weekday}
       biweekly: Ogni 2 settimane, di %{weekday}
@@ -148,6 +151,17 @@ it:
       title: Modifica %{name}
       income_title: Modifica entrata · %{name}
     form:
+      income_once_new_hint: "Entrata prevista una sola volta, nella data indicata sopra. Non si ripeterà. Contrassegna la transazione come una tantum per escluderla dalle medie."
+      once_new_hint: "Scade una sola volta, nella data indicata sopra. Non si ripeterà. Contrassegna la transazione come una tantum per escluderla dalle medie."
+      income_once_hint: "Entrata prevista una sola volta, in questa data. Non si ripeterà. Contrassegna la transazione come una tantum per escluderla dalle medie."
+      once_hint: "Scade una sola volta, in questa data. Non si ripeterà. Contrassegna la transazione come una tantum per escluderla dalle medie."
+      income_once_on_label: "In data"
+      once_on_label: "Scadenza il"
+      bank_reference_hint: "Una sequenza di caratteri ricorrente nella causale del pagamento (Verwendungszweck). I pagamenti su questo conto che la contengono corrispondono alla scadenza indipendentemente dall'importo o dalla data, salvo che il pagamento riporti un esercente diverso da quello associato alla scadenza. Usa un riferimento distintivo di almeno 3 caratteri."
+      reference_only_hint: "Ignora il nome della scadenza e il beneficiario: corrispondono solo i pagamenti la cui causale contiene il riferimento. È necessario un riferimento bancario."
+      reference_only_label: "Associa solo per riferimento"
+      bank_reference_placeholder: "Numero di contratto o codice cliente"
+      bank_reference_label: "Riferimento bancario"
       payment_url_label: Link di pagamento
       payment_url_placeholder: bank.example.com/pay
       payment_url_hint: Dove vai per pagare questa bolletta. Si apre in una nuova scheda dagli elenchi delle ricorrenti e delle prossime scadenze.
@@ -199,6 +213,7 @@ it:
       frequency_interval_label: "Ripeti ogni"
       frequency_interval_unit_label: "Unità"
     update:
+      once_date_locked: "Questo pagamento è già stato registrato, quindi non è possibile modificarne la data."
       success: Bolletta aggiornata
       success_with_siblings:
         one: Bolletta aggiornata e link di pagamento copiato in %{count} altra bolletta

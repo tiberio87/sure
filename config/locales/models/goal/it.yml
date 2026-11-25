@@ -36,3 +36,5 @@ it:
               locked_once_consumed: Questo obiettivo ha già registrato denaro come speso, quindi non può diventare una riserva.
             target_amount:
               below_consumed: Impossibile impostare un obiettivo inferiore a quanto questo obiettivo ha già registrato come speso.
+            progress_basis:
+              locked_once_completed: Riapri o ripristina questo obiettivo prima di cambiare cosa conta.

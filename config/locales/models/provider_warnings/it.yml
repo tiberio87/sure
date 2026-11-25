@@ -1,6 +1,9 @@
 ---
 it:
   provider_warnings:
+    enable_banking_history_truncated:
+      other: "Enable Banking: non è stato possibile recuperare l'intero storico delle transazioni di %{count} conti; le transazioni più vecchie potrebbero mancare"
+      one: "Enable Banking: non è stato possibile recuperare l'intero storico delle transazioni di %{count} conto; le transazioni più vecchie potrebbero mancare"
     limited_investment_data: "I dati di investimento da questo provider sono limitati. Le etichette delle attività (Acquisto, Vendita, Dividendo) non sono disponibili, il che potrebbe influire sull'accuratezza del budget. Considera la creazione di regole per escludere o categorizzare le transazioni di investimento."
 
     lunchflow_accounts_failed:

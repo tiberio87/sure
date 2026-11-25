@@ -3,6 +3,7 @@ it:
   activerecord:
     attributes:
       user:
+        password_challenge: "Password attuale"
         email: Email
         family: "%{moniker}"
         family_id: "%{moniker}"

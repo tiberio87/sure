@@ -5,6 +5,15 @@ it:
       update:
         success: "Categorie ed etichette salvate."
       show:
+        unknown_account_type_description:
+          other: "Questo file QIF contiene i tipi di conto %{types}, che %{product_name} non riconosce. Le relative transazioni verranno importate come quelle di un conto bancario."
+          one: "Questo file QIF contiene il tipo di conto %{types}, che %{product_name} non riconosce. Le relative transazioni verranno importate come quelle di un conto bancario."
+        unknown_account_type_title:
+          other: "Tipi di conto sconosciuti"
+          one: "Tipo di conto sconosciuto"
+        unknown_account_type_name: "«%{type}»"
+        selection_list_changed_description: "Con il nuovo formato della data, il file contiene categorie o tag differenti. Controlla la selezione sottostante: tutte le voci sono state selezionate di nuovo."
+        selection_list_changed_title: "Le categorie e i tag sono cambiati"
         title: "Configura e seleziona"
         description: "Esamina il formato data rilevato, poi scegli quali categorie ed etichette dal tuo file QIF importare in %{product_name}."
         categories_heading: Categorie
@@ -225,10 +234,13 @@ it:
         tag_mapping_description: Assegna tutte le etichette del tuo file importato alle etichette esistenti di %{product_name}. Puoi anche aggiungere nuove etichette o lasciarle non categorizzate.
         tag_mapping_title: Assegna le tue etichette
     uploads:
+      sample_csv:
+        unavailable: "Non è disponibile un CSV di esempio per questo tipo di importazione."
       handle_qif_upload:
         qif_uploaded: "File QIF caricato con successo."
         qif_account_required: Seleziona un conto per l'importazione QIF
       update:
+        qif_account_required: "Seleziona un conto per l'importazione QIF"
         qif_uploaded: "File QIF caricato con successo."
         monarch_uploaded: "Esportazioni Monarch caricate."
         monarch_balances_required: "Seleziona il file dei saldi esportato da Monarch."
@@ -284,6 +296,7 @@ it:
         hint_html: Carica il file <strong>all.ndjson</strong> dal tuo ZIP di esportazione dati
         ndjson_invalid: Deve essere un NDJSON valido con almeno un record
   imports:
+    configuration_locked: "I dati di questa importazione sono già presenti in Sure, quindi non è possibile modificarne i file e le opzioni. Riprova per completarla oppure eliminala per ricominciare."
     mapping_labels:
       account_type: "Tipo conto"
       account: "Conto"

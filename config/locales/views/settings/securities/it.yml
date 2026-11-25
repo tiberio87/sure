@@ -3,6 +3,11 @@ it:
   settings:
     securities:
       show:
+        compromised_secret_warning:
+          settings_secrets: "Le chiavi API e i token salvati nelle impostazioni sono cifrati con una chiave derivata direttamente da SECRET_KEY_BASE, che la procedura precedente non gestisce. Dopo aver modificato SECRET_KEY_BASE, cifrali nuovamente con bin/rails \"security:rotate_setting_secrets[0]\", passando il vecchio valore nella variabile d'ambiente OLD_SECRET_KEY_BASE (consulta la guida di hosting Docker). Inserisci nuovamente tutte le chiavi che risultano non decifrabili."
+          generate: "NON limitarti a impostare un nuovo SECRET_KEY_BASE ed eseguire il task di backfill: se alcuni dati sono già stati cifrati con la chiave compromessa, il backfill non può distinguere il testo cifrato dal vero testo in chiaro e lo cifrerà una seconda volta, rendendolo irrecuperabile. Esegui invece una rotazione sicura, con l’applicazione arrestata: genera nuove chiavi con bin/rails db:encryption:init e impostale come variabili ACTIVE_RECORD_ENCRYPTION_*, quindi esegui bin/rails \"security:backfill_encryption[100,0]\" passando questo SECRET_KEY_BASE nella variabile d’ambiente ACTIVE_RECORD_ENCRYPTION_PREVIOUS_SECRET_KEY_BASE solo per quel comando, in modo che i dati esistenti possano ancora essere decifrati e migrati alle nuove chiavi. Consulta la guida di hosting Docker."
+          intro: "Le chiavi di cifratura di questa installazione sono state derivate automaticamente da un valore SECRET_KEY_BASE noto pubblicamente (un valore predefinito o di esempio presente nei file di esempio o nelle guide di hosting del progetto). Chiunque conosca tale valore può calcolare le stesse chiavi di cifratura, quindi questi dati non sono realmente protetti."
+          title: "Le chiavi di cifratura non sono realmente segrete"
         disable_mfa: Disabilita 2FA
         disable_mfa_confirm: Sei sicuro di voler disabilitare l'autenticazione a due fattori? Questo renderà il tuo account meno sicuro.
         enable_mfa: Abilita 2FA

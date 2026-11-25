@@ -1,6 +1,7 @@
 ---
 it:
   recurring_allocations:
+    split_counterpart_allocated: "Questa transazione è suddivisa e l'addebito originale o una delle sue parti è già associato a una scadenza"
     over_allocation: "L'importo assegnato supererebbe quello della transazione"
     missing_rate: "Tasso di cambio non disponibile; inserisci l'importo manualmente"
     already_allocated: "Questa transazione è già associata alla scadenza"

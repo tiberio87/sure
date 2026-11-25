@@ -1,8 +1,25 @@
 ---
 it:
   transactions:
+    reconcile:
+      badge:
+        reconciled_tooltip: "Periodo dell'estratto conto completamente riconciliato. Fai clic per ripristinare lo stato Non riconciliata."
+        cleared_tooltip: "Confermata sull'estratto conto, ma non ancora completamente riconciliata. Fai clic per contrassegnarla come riconciliata."
+        unreconciled_tooltip: "Non ancora verificata rispetto all'estratto conto. Fai clic per contrassegnarla come verificata."
+      statuses:
+        reconciled: "Riconciliata"
+        cleared: "Verificata"
+        unreconciled: "Non riconciliata"
+      not_manual_account: "Lo stato di riconciliazione si applica solo ai conti gestiti manualmente (senza sincronizzazione bancaria)"
+      unavailable: "La riconciliazione non è abilitata per questo nucleo familiare"
+      failure: "Impossibile aggiornare lo stato di riconciliazione"
+      success: "Stato impostato su %{status}"
     bulk_updates:
       new:
+        transfer_fields_hint: "Per i trasferimenti, data ed esercente rimangono invariati. La categoria si applica solo ai trasferimenti in uscita che la supportano."
+        reconciled_status_label: "Stato di riconciliazione"
+        reconciled_status_hint: "Si applica solo ai conti gestiti manualmente (senza sincronizzazione bancaria)."
+        no_change: "(nessuna modifica)"
         cancel: Annulla
         category_label: Categoria
         category_prompt: Seleziona una categoria
@@ -21,10 +38,12 @@ it:
         transactions_section: Transazioni
     unknown_name: Transazione sconosciuta
     selection_bar:
+      reconcile: "Riconcilia"
       duplicate: Duplica
       edit: Modifica
       selected: selezionate
     form:
+      tags_save_error: "Impossibile salvare i tag. Modificali nuovamente per riprovare oppure ricarica la pagina."
       details: Dettagli
       account: Conto
       account_prompt: Seleziona un conto
@@ -197,7 +216,7 @@ it:
       failure: Impossibile ignorare il suggerimento di duplicato
     pending_duplicate_merge:
       possible_duplicate: Duplicato?
-      possible_duplicate_short: Dup?
+      possible_duplicate_short: "Dupl.?"
       review_recommended: Da rivedere
       review_recommended_short: Rev
       confirm_title: "Unisci con la transazione registrata (%{posted_amount})"
@@ -273,6 +292,9 @@ it:
     toggle_recurring_section: Mostra/nascondi transazioni ricorrenti in arrivo
     search:
       filters:
+        reconcile_status_hint: "Sono inclusi solo i conti manuali."
+        reconcile_status: "Riconciliazione"
+        balance_updates: "Saldi"
         account: Conto
         date: Data
         type: Tipo
@@ -327,6 +349,11 @@ it:
         unexpected_error: "Errore imprevisto durante la conversione: %{error}"
     searches:
       filters:
+        balance_updates_filter:
+          show: "Mostra aggiornamenti dei saldi sincronizzati"
+          preferences_link: "Preferenze"
+          hint: "Solo per questa vista. Per mostrarli sempre, attivali in"
+          always_shown: "Sempre visibili, come impostato in"
         account_filter:
           filter_accounts: Filtra conti
         category_filter:
@@ -344,6 +371,7 @@ it:
           less_than: Minore di
           placeholder: '0'
         badge:
+          balance_updates: "Saldi sincronizzati"
           expense: Spesa
           income: Entrata
           on_or_after: dal %{date}
@@ -371,6 +399,8 @@ it:
           history: "Cronologia IA"
           history_description: "La transazione è stata categorizzata automaticamente, ma la categoria è stata modificata in seguito."
       menu:
+        reconcile_status_filter: "Riconciliazione"
+        loading: "Caricamento dei filtri…"
         account_filter: Conto
         amount_filter: Importo
         apply: Applica
@@ -404,7 +434,7 @@ it:
       no_attachments: "Nessun allegato ancora"
       select_up_to: "Seleziona fino a %{count} file (immagini o PDF, max %{size}MB ciascuno) • %{used} di %{count} utilizzati"
       files:
-        one: "File (1)"
+        one: "1 file"
         other: "File (%{count})"
       browse_to_add: "Sfoglia per aggiungere file"
       max_reached: "Limite massimo di file raggiunto (%{count}/%{max}). Elimina un file esistente per caricarne un altro."

@@ -1,6 +1,12 @@
 ---
 it:
   providers:
+    terrascoutx:
+      errors:
+        insecure_url: "TERRASCOUTX_URL deve utilizzare https://."
+        location_mismatch: "TerraScoutX ha trovato un immobile con un numero civico o un CAP diverso. Verifica l'indirizzo."
+        no_valuation: "TerraScoutX non ha restituito una valutazione per questo immobile."
+        no_property: "TerraScoutX non ha trovato un immobile corrispondente a questo indirizzo."
     truelayer:
       description: "Collega la tua banca britannica tramite TrueLayer"
     property_valuation:

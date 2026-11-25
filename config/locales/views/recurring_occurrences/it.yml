@@ -7,6 +7,9 @@ it:
       missed: Mancato
       scheduled: Aperto
     show:
+      used_up_hint: "Altre scadenze utilizzano già l'intero importo di questa transazione."
+      used_up: "Già utilizzato"
+      amount_left: "%{amount} residui"
       due_on: "Scadenza %{date}"
       paid_of: "Pagati %{paid} su %{expected}"
       paid_headline: "%{amount} pagati"

@@ -136,7 +136,7 @@ it:
           cd: Certificato di deposito
           money_market: Mercato monetario
         investment:
-          brokerage: Brokerage
+          brokerage: "Conto titoli"
           pension: Pensione
           retirement: Pensionamento
           "401k": "401(k)"

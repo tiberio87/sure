@@ -9,6 +9,7 @@ it:
     destroy:
       success: Connessione Binance pianificata per l'eliminazione.
     setup_accounts:
+      historical_import: "Importazione dello storico"
       title: Importa conto Binance
       subtitle: Seleziona quali portafogli tracciare
       instructions: Seleziona i portafogli Binance che vuoi importare. Vengono mostrati solo i portafogli con saldi.

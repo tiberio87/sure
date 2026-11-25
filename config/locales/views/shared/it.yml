@@ -4,6 +4,14 @@ it:
     self_hostable:
       redis_configured: "Redis è ora configurato correttamente! Puoi procedere con la configurazione della tua applicazione."
   shared:
+    exchange_rate_notes:
+      stale_rate: "%{from} del %{date}"
+      stale:
+        other: "Gli ultimi tassi di cambio verso %{currency} non sono aggiornati: %{rates}. I totali di oggi li utilizzano comunque."
+        one: "L'ultimo tasso di cambio verso %{currency} non è aggiornato: %{rates}. I totali di oggi lo utilizzano comunque."
+      missing:
+        other: "Non sono ancora memorizzati i tassi di cambio da %{currencies} a %{currency}, pertanto alcuni totali potrebbero escludere gli importi in tali valute."
+        one: "Non è ancora memorizzato alcun tasso di cambio da %{currencies} a %{currency}, pertanto alcuni totali potrebbero escludere gli importi in %{currencies}."
     dot_separator: "·"
     preview: Anteprima
     sync_toast:
