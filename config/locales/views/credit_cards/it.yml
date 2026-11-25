@@ -41,6 +41,19 @@ it:
         other: "Scaduta da %{count} giorni"
     tabs:
       overview:
+        payments_applied: "Pagamenti contabilizzati"
+        due_on_days:
+          other: "Scadenza: %{date} (tra %{count} giorni)"
+          one: "Scadenza: %{date} (tra 1 giorno)"
+          zero: "Scadenza: %{date} (oggi)"
+        due_overdue_days:
+          other: "Scadenza: %{date} (%{count} giorni di ritardo)"
+          one: "Scadenza: %{date} (1 giorno di ritardo)"
+        closes_on_days:
+          other: "Chiusura estratto conto: %{date} (tra %{count} giorni)"
+          one: "Chiusura estratto conto: %{date} (tra 1 giorno)"
+          zero: "Chiusura estratto conto: %{date} (oggi)"
+        balance_updates: "Aggiornamenti del saldo"
         above_minimum: "Il totale di questo estratto conto è %{balance}, superiore al pagamento minimo di %{minimum}."
         annual_percentage_rate: "Tasso annuo effettivo"
         apr: "TAEG"

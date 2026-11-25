@@ -147,7 +147,7 @@ it:
             effective_provider: Provider effettivo
             model: Modello
             endpoint: Endpoint
-            function_calling: Function calling (tools)
+            function_calling: "Chiamata di funzioni (strumenti)"
             pdf_text_extraction: Percorso di estrazione del testo da PDF
             pdf_vision_processing: Percorso PDF vision/nativo
             llm_request_timeout: Timeout delle richieste LLM
@@ -220,6 +220,9 @@ it:
             scaffolded: Solo predisposto
             missing: Non configurato
           failure_codes:
+            unreachable: "Impossibile raggiungere il servizio"
+            unauthorized: "Il servizio ha rifiutato la chiave API"
+            no_credit: "Il servizio ha rifiutato la richiesta perché il credito associato alla chiave è esaurito"
             model_not_available: Il modello configurato non è stato restituito dal provider
             no_tool_call: Il modello ha risposto senza chiamare lo strumento di controllo
             tools_refused: Il servizio ha gestito la stessa richiesta senza tools e l'ha rifiutata con i tools

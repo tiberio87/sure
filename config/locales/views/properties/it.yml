@@ -1,6 +1,9 @@
 ---
 it:
   properties:
+    update_balances:
+      invalid_purchase_date: "Inserisci una data di acquisto non futura e non anteriore a 30 anni fa."
+      invalid_currency: "Seleziona una valuta dall'elenco."
     edit:
       edit: Modifica %{account}
       title: Inserisci la proprietà manualmente
@@ -23,6 +26,10 @@ it:
       year_built: Anno di costruzione
       year_built_placeholder: '2000'
     new:
+      avm_roll_value_notes:
+        terrascoutx: "%{provider} riporta il valore attribuito dalla contea nell'ultimo registro fiscale. Non è una stima del valore di mercato attuale e può quindi differire dal prezzo di vendita dell'immobile."
+      avm_descriptions:
+        terrascoutx: "Inserisci un nome per l'immobile e il suo indirizzo. %{provider} cercherà i dati dell'immobile e il valore attribuito dalla contea nell'ultimo registro fiscale. Non si tratta di una stima del valore di mercato attuale."
       title: Inserisci la proprietà manualmente
       next: "Avanti"
       avm_option: Aggiungi tramite %{provider}
@@ -64,12 +71,18 @@ it:
       country_placeholder: "Italia"
       save: "Salva"
     balances:
+      purchase_date_label: "Data di acquisto"
       title: "Inserisci la proprietà manualmente"
       market_value_label: "Valore di mercato stimato"
       market_value_tooltip: "Il valore di mercato stimato della tua proprietà. Questo numero può spesso essere trovato su siti come Immobiliare.it o Idealista, e non è mai un numero esatto."
       save: "Salva"
       next: "Avanti"
     overview_fields:
+      cost_tag_hint: "Le transazioni con questo tag, come le spese notarili e le imposte, concorrono al costo complessivo di acquisto dell'immobile."
+      cost_tag_prompt: "Nessuno"
+      cost_tag_label: "Tag dei costi (facoltativo)"
+      notes_placeholder: "Numero di registro o identificativi catastali, estremi dell'atto, notaio, ecc."
+      notes_label: "Note"
       name_label: "Nome"
       name_placeholder: "Casa vacanze"
       subtype_prompt: "Seleziona tipo"
@@ -90,6 +103,17 @@ it:
       year_built: Anno di Costruzione
     tabs:
       overview:
+        gain_after_costs_in_currency: "Guadagno al netto dei costi in %{currency}"
+        gain_after_costs: "Guadagno al netto dei costi"
+        cost_basis_in_currency: "Costo complessivo di acquisto in %{currency}"
+        cost_basis: "Costo complessivo di acquisto"
+        cost_transactions:
+          other: "%{count} transazioni con tag %{tag}"
+          one: "1 transazione con tag %{tag}"
+        purchase_costs_in_currency: "Spese di acquisto in %{currency}"
+        purchase_costs: "Spese di acquisto"
+        rate_unavailable: "Tasso di cambio non disponibile"
+        trend_in_currency: "Andamento in %{currency}"
         living_area: Superficie
         market_value: Valore di Mercato
         purchase_price: Prezzo di Acquisto
@@ -119,10 +143,12 @@ it:
         long: Terreno Agricolo
 
     avm_providers:
+      terrascoutx: "TerraScoutX"
       rentcast: RentCast
       realie: Realie
       chimnie: "Chimnie"
     form_tabs:
+      aria_label: "Dettagli dell'immobile"
       address: Indirizzo
       overview: Panoramica
       value: Valore

@@ -24,6 +24,8 @@ it:
       add_rule:
         success: "La regola %{name} è stata aggiunta in cima all'elenco delle regole."
       classifier:
+        min_category_examples_hint: "Una categoria viene selezionata solo quando è associata ad almeno questo numero di tue transazioni (1–100). Altrimenti una categoria con pochissimi esempi potrebbe essere scelta per transazioni sconosciute con un punteggio elevato."
+        min_category_examples: "Numero minimo di esempi per categoria"
         apply: Applica
         lock_results: Blocca le categorie assegnate dal classificatore
         lock_results_hint: Impedisce alle regole di modificare le scelte di Bayes, salvo quando premi Applica su una regola. L'IA non modifica mai le scelte di Bayes, anche se non sono bloccate.

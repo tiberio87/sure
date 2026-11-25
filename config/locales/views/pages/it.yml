@@ -38,6 +38,25 @@ it:
       heading: Termini di Servizio
       placeholder: Il contenuto dei termini di servizio verrà visualizzato qui.
     dashboard:
+      cashflow_donut:
+        weight: "Peso"
+        outflows: "Uscite"
+        inflows: "Entrate"
+        over: "Oltre le entrate"
+        left: "Disponibile da spendere"
+        over_amount: "%{amount} in eccesso"
+        left_amount: "%{amount} residui"
+        of_income: "su %{amount} di entrate"
+        spent: "Speso"
+        no_data: "Nessun flusso di cassa per questo mese"
+        apply: "Applica"
+        search_accounts: "Cerca conti"
+        period_scope_hint: "Mostra il mese selezionato qui, indipendentemente dal periodo impostato nella parte superiore della dashboard."
+        filter_accounts_all: "Tutti i conti"
+        filter_accounts: "Filtra conti (%{count})"
+        month_picker_aria_label: "Seleziona il mese"
+        date_range: "Dal %{start_date} al %{end_date}"
+        title: "Flussi di cassa a grafico anulare"
       welcome: "Bentornato, %{name}"
       subtitle: "Ecco cosa sta succedendo con le tue finanze"
       new: "Nuovo"
@@ -152,6 +171,10 @@ it:
         income: Entrate
         expenses: Spese
       spending_trend:
+        compare_months:
+          other: "rispetto agli ultimi %{count} mesi"
+          one: "rispetto al mese scorso"
+        compare_picker_aria_label: "Seleziona i mesi da confrontare"
         title: Spese
         date_range: '%{start_date} - %{end_date}'
         date_range_short: '%{start_date} - %{end_day} %{year}'

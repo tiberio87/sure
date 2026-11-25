@@ -43,6 +43,8 @@ it:
       valuations: Valore
       value: valore
     new:
+      submit: "Aggiungi aggiornamento del saldo"
+      amount: "Importo"
       title: Nuovo saldo
     show:
       amount: Importo
@@ -69,6 +71,9 @@ it:
       update: Aggiorna
 
     names:
+      synced_value: "Valore sincronizzato"
+      synced_principal: "Capitale residuo sincronizzato"
+      synced_balance: "Saldo sincronizzato"
       current_account_value: "Valore attuale del conto"
       current_balance: "Saldo attuale"
       current_loan_balance: "Debito residuo attuale"

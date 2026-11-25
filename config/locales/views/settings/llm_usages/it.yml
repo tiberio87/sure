@@ -2,19 +2,34 @@
 it:
   settings:
     llm_usages:
+      requests:
+        status:
+          cancelled: "Annullata"
+          failed: "Non riuscita"
+          succeeded: "Riuscita"
+        tokens: "%{prompt}/%{completion} token"
+        request: "Richiesta %{number}"
+        summary:
+          other: "%{count} richieste"
+          one: "%{count} richiesta"
       show:
+        cancelled: "Annullata"
+        recent_usage_scope: "Ogni chiamata mostra tutte le proprie richieste, anche quelle al di fuori delle date selezionate. Il suo totale può quindi differire dai totali sopra, che conteggiano solo le richieste nell'intervallo."
+        requests_in_calls:
+          other: "%{count} richieste, tentativi ripetuti inclusi"
+          one: "%{count} richiesta, tentativi ripetuti inclusi"
         page_title: "Utilizzo e costi LLM"
         subtitle: "Monitora l'utilizzo AI e i costi stimati"
         start_date: "Data inizio"
         end_date: "Data fine"
         filter: "Filtra"
-        total_requests: "Richieste totali"
+        total_calls: "Chiamate totali"
+        avg_cost_per_call: "Costo medio/chiamata"
+        based_on_calls: "Basato su %{with_cost} di %{total} chiamate con dati di costo"
         total_tokens: "Token totali"
         prompt: "prompt"
         completion: "completamento"
         total_cost: "Costo totale"
-        avg_cost_per_request: "Costo medio/richiesta"
-        based_on_requests: "Basato su %{with_cost} di %{total} richieste con dati di costo"
         cost_by_operation: "Costo per operazione"
         cost_by_model: "Costo per modello"
         recent_usage: "Utilizzo recente"

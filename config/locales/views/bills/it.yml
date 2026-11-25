@@ -34,6 +34,9 @@ it:
         autopay_on: "Attivato"
         apply: Applica selezionati
     detail:
+      rule_reference_only: "Solo i pagamenti che contengono «%{reference}» nella causale corrispondono a questa scadenza, indipendentemente dall'importo o dalla data"
+      rule_reference: "I pagamenti che contengono «%{reference}» nella causale corrispondono a questa scadenza, indipendentemente dall'importo o dalla data"
+      once_kind_hint: "Contrassegna la transazione come una tantum per escluderla dalle medie."
       current: Attuale
       next_payment: Prossimo pagamento
       around: "intorno al %{date}"
@@ -95,6 +98,7 @@ it:
     resolve: Risolvi
     manage_payments: Gestisci pagamenti
     match:
+      reference: "La causale del pagamento contiene «%{reference}»"
       same_merchant: Stesso esercente
       name_matches: Nome corrispondente
       same_transfer: Trasferimento allo stesso conto

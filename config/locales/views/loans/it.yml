@@ -1,9 +1,33 @@
 ---
 it:
   loans:
+    subtypes:
+      student:
+        short: "Prestito studentesco"
+        long: "Prestito studentesco"
+      other:
+        short: "Altro finanziamento"
+        long: "Altro finanziamento"
+      mortgage:
+        short: "Mutuo"
+        long: "Mutuo"
+      line_of_credit:
+        short: "Linea di credito"
+        long: "Linea di credito"
+      home_equity:
+        short: "Garanzia immobiliare"
+        long: "Finanziamento garantito dal valore netto dell'immobile"
+      business:
+        short: "Finanziamento aziendale"
+        long: "Finanziamento aziendale"
+      auto:
+        short: "Finanziamento auto"
+        long: "Finanziamento auto"
     edit:
       edit: Modifica %{account}
     form:
+      principal_only_transfers_hint: "Attiva questa opzione se trasferisci solo la quota capitale e registri gli interessi separatamente. Lasciala disattivata se il trasferimento collegato corrisponde all'intera rata."
+      principal_only_transfers: "I trasferimenti collegati includono solo la quota capitale"
       interest_rate: Tasso di interesse
       interest_rate_placeholder: '5.25'
       initial_balance: Capitale originale del prestito
@@ -42,7 +66,7 @@ it:
     overview:
       interest_rate: Tasso di Interesse
       monthly_payment: Rata Mensile
-      not_applicable: N/A
+      not_applicable: "N/D"
       original_principal: Capitale Originale
       remaining_principal: Capitale Residuo
       term: Durata
@@ -53,7 +77,7 @@ it:
       overview:
         interest_rate: Tasso di Interesse
         monthly_payment: Rata Mensile
-        not_applicable: N/A
+        not_applicable: "N/D"
         original_principal: Capitale Originale
         remaining_principal: Capitale Residuo
         term: Durata

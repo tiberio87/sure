@@ -44,7 +44,7 @@ it:
         regenerate_confirm: Verrà generata una nuova coppia di chiavi. Wise continuerà ad accettare la chiave pubblica precedente finché non la rimuoverai tu stesso dal tuo account Wise — Sure non può revocarla da remoto. Dovrai registrare la nuova chiave pubblica su Wise prima che gli estratti conto possano essere sincronizzati di nuovo. Continuare?
     profile_types:
       personal: Personale
-      business: Business
+      business: "Aziendale"
     entries:
       default_name: Transazione Wise
       fee_name: Commissione Wise
@@ -149,6 +149,7 @@ it:
       link_account: Collega saldo
       cancel: Annulla
     select_existing_account:
+      not_found: "Conto o saldo Wise non trovato."
       title: Collega %{account_name} a Wise
       description: Seleziona il saldo valuta Wise da collegare a questo conto. Le transazioni verranno sincronizzate automaticamente.
       no_accounts_found: Nessun saldo Wise non collegato trovato.

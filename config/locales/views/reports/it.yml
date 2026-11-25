@@ -1,13 +1,33 @@
 ---
 it:
   reports:
+    biggest_expenses:
+      table:
+        amount: "Importo"
+        category: "Categoria"
+        name: "Nome"
+      limit_aria: "Numero di spese da visualizzare"
+      one_time: "Una tantum"
+      title: "Spese maggiori"
     index:
+      refresh: "Aggiorna"
+      updating: "aggiornamento in background"
+      built_at: "Aggiornato %{time} fa"
+      section_aria: "Sezione %{title}. Premi Invio o Spazio per selezionarla, quindi usa i tasti freccia per spostarla."
+      tag_filter:
+        apply: "Applica"
+        search: "Cerca tag"
+        selected:
+          other: "%{count} tag"
+          one: "%{count} tag"
+        all: "Tutti i tag"
       title: Rapporti
       subtitle: Analisi approfondita della tua salute finanziaria
       export: Esporta CSV
       print_report: Stampa rapporto
-      toggle_section: "Mostra/nascondi sezione"
       periods:
+        all_time: "Intero periodo"
+        last_12_months: "Ultimi 12 mesi"
         monthly: Mensile
         quarterly: Trimestrale
         ytd: Da inizio anno
@@ -21,13 +41,15 @@ it:
       next_period: "Periodo successivo"
       today: "Oggi"
       period_label:
+        all_time: "%{start} – %{end}"
+        last_12_months: "%{start} – %{end}"
         quarterly: "T%{quarter} %{year}"
-        ytd: "YTD %{year}"
+        ytd: "Da inizio anno %{year}"
         past_year: "%{year}"
         last_6_months: "%{start} – %{end}"
       period_picker:
         quarter: "T%{quarter} %{year}"
-        ytd: "YTD %{year}"
+        ytd: "Da inizio anno %{year}"
       previous_year: "Anno precedente"
       next_year: "Anno successivo"
       previous_decade: "Decennio precedente"
@@ -59,6 +81,25 @@ it:
         warning: Vicino al limite
         over: Oltre il budget
     trends:
+      category_trend:
+        prompt: "Seleziona le categorie per visualizzarne l'andamento."
+        no_data: "Scegli un periodo più lungo per visualizzare l'andamento."
+        data_table_period: "Periodo"
+        data_table_caption: "Valori dell'andamento per periodo"
+        data_table: "Mostra tabella dei dati"
+        granularity_aria: "Frequenza di aggregazione"
+        year: "Anno"
+        month: "Mese"
+        clear: "Azzera"
+        apply: "Applica"
+        search: "Cerca categorie"
+        selected:
+          other: "%{count} categorie"
+          one: "%{count} categoria"
+        select: "Seleziona categorie"
+        filtered_by_tags: "Filtrato per tag"
+        subtitle: "Totali mensili o annuali delle categorie selezionate, al netto dei rimborsi."
+        title: "Andamento delle categorie"
       title: Tendenze e Approfondimenti
       monthly_breakdown: Ripartizione mensile
       month: Mese
@@ -141,6 +182,9 @@ it:
       no_assets: Nessuna attività
       no_liabilities: Nessuna passività
     investment_performance:
+      unconverted_note:
+        other: "%{count} guadagni esclusi: tasso di cambio verso %{currency} non disponibile"
+        one: "%{count} guadagno escluso: tasso di cambio verso %{currency} non disponibile"
       title: Performance investimenti
       portfolio_value: Valore portafoglio
       total_return: Rendimento totale
@@ -195,6 +239,14 @@ it:
       security_warning: "Questo URL include la tua chiave API. Tienila al sicuro!"
       open_sheets: Apri Google Sheets
     print:
+      biggest_expenses:
+        one_time: "Una tantum"
+        amount: "Importo"
+        account: "Conto"
+        category: "Categoria"
+        name: "Nome"
+        date: "Data"
+        title: "Spese maggiori"
       document_title: Rapporto finanziario
       title: Rapporto finanziario
       generated_on: "Generato il %{date}"

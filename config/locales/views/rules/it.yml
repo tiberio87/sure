@@ -4,6 +4,8 @@ it:
     no_action: Nessuna azione
     no_condition: Nessuna condizione
     rule:
+      apply_immediately_hint: "Viene eseguita anche subito dopo la creazione o la modifica di una transazione, manualmente, in blocco, nella funzione Categorizza, tramite API o tramite l'assistente, insieme alle regole attive che la precedono."
+      apply_immediately: "Immediatamente"
       edit: Modifica
       re_apply_rule: Riapplica regola
       delete: Elimina
@@ -20,6 +22,8 @@ it:
       stop_processing: "Interrompi"
       stop_processing_hint: "Le regole successive non modificano le transazioni corrispondenti a questa regola."
     form:
+      apply_immediately_description: "Viene eseguita subito dopo la creazione o la modifica di una transazione, manualmente, in blocco, nella funzione Categorizza, tramite API o tramite l'assistente, oltre alla normale esecuzione notturna."
+      apply_immediately_label: "Applica subito alle transazioni nuove e modificate"
       rule_name_label: Nome regola (opzionale)
       rule_name_placeholder: Inserisci un nome per questa regola
       add_condition: Aggiungi condizione
@@ -124,6 +128,7 @@ it:
           modified: Modificate
           blocked: Bloccate
       execution_types:
+        immediate: "Immediata"
         manual: Manuale
         scheduled: Pianificata
       statuses:
@@ -137,6 +142,8 @@ it:
       confirm_button: Reimposta cache
       success: La cache AI è in fase di svuotamento. Potrebbe richiedere alcuni istanti.
     condition_filters:
+      transaction_additional_detail:
+        label: "Dettagli aggiuntivi (chiave=valore)"
       transaction_type:
         income: Entrata
         expense: Spesa
@@ -159,6 +166,8 @@ it:
         matches_regex: "Corrisponde all'espressione regolare"
     notification_baseline_timed_out: "Questa regola è ancora disattivata. La verifica delle transazioni già corrispondenti ha richiesto troppo tempo e, senza questo controllo, verrebbe inviata un'email per ciascuna. Semplifica le condizioni e riattivala."
     category_rule_cta:
+      turn_off_suggestions: "Disattiva i suggerimenti di regole"
+      not_today: "Non oggi"
       close: "Chiudi"
       create_rule: "Crea regola"
       description: "Puoi creare una regola per categorizzare automaticamente transazioni come questa"

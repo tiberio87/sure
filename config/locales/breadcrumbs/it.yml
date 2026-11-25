@@ -1,6 +1,7 @@
 ---
 it:
   breadcrumbs:
+    portfolio: "Portafoglio"
     account_sharings: Condivisione conto
     account_statements: Archivio estratti
     accounts: Conti
@@ -22,7 +23,7 @@ it:
     coinbase_items: Coinbase
     coinstats_items: CoinStats
     credit_cards: Carte di credito
-    cryptos: Crypto
+    cryptos: "Criptovalute"
     dashboard: Dashboard
     debug: Debug
     debugs: Debug
